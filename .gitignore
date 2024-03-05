@@ -2,3 +2,6 @@ Library/
 UserSettings/
 Temp/
 Logs/
+Assembly-CSharp.csproj
+Assembly-CSharp-Editor.csproj
+Animagus.sln
