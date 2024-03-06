@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 
 public class PlayerManagement : MonoBehaviour
@@ -18,6 +14,18 @@ public class PlayerManagement : MonoBehaviour
 
     [SerializeField]
     private GameObject cam;
+    
+    [SerializeField]
+    [Range(0, 10)]
+    private float camDistance;
+
+    [SerializeField]
+    [Range(1, 5)]
+    private float mouseSensitivityX;
+    
+    [SerializeField]
+    [Range(1, 5)]
+    private float mouseSensitivityY;
 
     [SerializeField]
     [Range(0f, 20f)]
@@ -31,9 +39,10 @@ public class PlayerManagement : MonoBehaviour
     [Range(100f, 300f)]
     public float jumpForce = 200;
     
-    private Transform _camPos;
+    private Transform _camTransform;
     
     public Rigidbody rb;
+    public Transform transform;
 
     [SerializeField]
     [Range(0, 20)]
@@ -42,11 +51,14 @@ public class PlayerManagement : MonoBehaviour
     private int groundCollision;
     private bool grounded;
     private int groundedTimer;
+
+    private float swapped;
     
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponentInParent<Rigidbody>();
+        transform = GetComponentInParent<Transform>().transform;
         
         for (int i = 0; i < animals.Length; i++)
         {
@@ -54,7 +66,7 @@ public class PlayerManagement : MonoBehaviour
             animalMove[i].SetPlayerManagement(this);
         }
 
-        _camPos = cam.GetComponent<Transform>();
+        _camTransform = cam.GetComponent<Transform>().transform;
     }
 
     // Update is called once per frame
@@ -63,18 +75,51 @@ public class PlayerManagement : MonoBehaviour
         if (!grounded) {
             groundedTimer = Mathf.Max(groundedTimer - 1, -1);
         }
-        // print(groundedTimer);
 
-        if (Input.GetButtonDown("Jump") && IsGrounded()) {
+        if (Input.GetButton("Jump") && IsGrounded()) {
             animalMove[(int) animalTyps].Jump();
             groundedTimer = -1;
         }
     
         float inputH = Input.GetAxis("Horizontal");
         float inputV = Input.GetAxis("Vertical");
+        float swap = Input.GetAxis("Switch");
         bool specialActive = Input.GetButtonDown("Special");
+
+        if (swap != 0) {
+            if (swapped != swap) {
+                int current = (int) animalTyps;
+                int next = (current + (int) swap + 4) % animals.Length;
+            
+                animals[current].SetActive(false);
+                animals[next].SetActive(true);
+
+                animalTyps = (AnimalTyps) next;
+                swapped = swap;
+            }
+        } else {
+            swapped = 0;
+        }
+
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
         
-        float camYr = _camPos.rotation.eulerAngles.y;
+        float camXr = _camTransform.rotation.eulerAngles.x + mouseY * mouseSensitivityY;
+        float camYr = _camTransform.rotation.eulerAngles.y + mouseX * mouseSensitivityX;
+
+        _camTransform.rotation = Quaternion.Euler(camXr, camYr, 0);                
+        
+        Vector3 viewOffset = -1 * (_camTransform.rotation * Vector3.forward);
+        
+        RaycastHit hit;
+        bool camCastHit = Physics.Raycast(transform.position, viewOffset, out hit, camDistance);
+
+        if (camCastHit) {
+            _camTransform.position = transform.position + (hit.distance - 10f) * viewOffset;
+        } else {
+            _camTransform.position = transform.position + camDistance * viewOffset;
+        }
+        
 
         Vector3 inputVec3 = new Vector3(inputH, 0, inputV);
         inputVec3.Normalize();
@@ -82,10 +127,9 @@ public class PlayerManagement : MonoBehaviour
         
         Vector2 inputVec2 = new Vector2(inputVec3.x,inputVec3.z);
         
-        Transform t = GetComponentInParent<Transform>();
         if (inputVec3.magnitude > 0.001) {
             Quaternion targetRotation = Quaternion.LookRotation(inputVec3, Vector3.up);
-            t.transform.rotation = Quaternion.Lerp(t.transform.rotation, targetRotation, 0.2f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.2f);
         }
         animalMove[(int) animalTyps].Move(inputVec2,specialActive);
     }
@@ -95,7 +139,6 @@ public class PlayerManagement : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision collision) {
-        print(collision.GetContact(0).normal.y);
         if (collision.GetContact(0).normal.y > 0.9) {
             groundCollision = collision.gameObject.GetInstanceID();
             grounded = true;            
