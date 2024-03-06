@@ -669,8 +669,8 @@ Rigidbody:
   m_GameObject: {fileID: 2983922382756872299}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 1
+  m_AngularDrag: 0.7
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -685,7 +685,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!135 &7563776302559747149
 SphereCollider:
@@ -694,7 +694,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2983922382756872299}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 8f49b6c790d51547a94de644517c2f59, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -730,8 +730,13 @@ MonoBehaviour:
   - {fileID: 3615979185299347821}
   - {fileID: 3405214834486547940}
   - {fileID: 6714493633433685869}
-  animalTyps: 0
+  animalTyps: 3
   cam: {fileID: 0}
+  movementForce: 10
+  airMovementFactor: 0.75
+  jumpForce: 250
+  rb: {fileID: 0}
+  MAX_GROUNDED: 10
 --- !u!1 &3019193527535933221
 GameObject:
   m_ObjectHideFlags: 0
