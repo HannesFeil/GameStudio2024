@@ -19,7 +19,7 @@ public class PlayerManagement : MonoBehaviour
     [Range(0, 10)]
     private float camDistance;
 
-    [SerializeField] [Range(0, 1)] private float SphereRaduisHitbox;
+    [SerializeField] [Range(0, 1)] private float camSphereRaduis;
 
     [SerializeField]
     [Range(1, 5)]
@@ -114,7 +114,7 @@ public class PlayerManagement : MonoBehaviour
         Vector3 viewOffset = -1 * (_camTransform.rotation * Vector3.forward);
         
         RaycastHit hit;
-        bool camCastHit = Physics.SphereCast(transform.position, SphereRaduisHitbox, viewOffset, out hit, camDistance);
+        bool camCastHit = Physics.SphereCast(transform.position, camSphereRaduis, viewOffset, out hit, camDistance);
 
         if (camCastHit) {
             _camTransform.position = hit.point; //Maybe nicht point sondern die Mitte des gehitteten Körpers?
