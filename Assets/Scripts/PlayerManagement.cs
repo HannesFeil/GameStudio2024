@@ -114,12 +114,12 @@ public class PlayerManagement : MonoBehaviour
         Vector3 viewOffset = -1 * (_camTransform.rotation * Vector3.forward);
         
         RaycastHit hit;
-        bool camCastHit = Physics.SphereCast(transform.position, camSphereRaduis, viewOffset, out hit, camDistance);
+        bool camCastHit = Physics.SphereCast(transform.position + (Vector3.up * camSphereRaduis), camSphereRaduis, viewOffset, out hit, camDistance);
 
         if (camCastHit) {
-            _camTransform.position = hit.point; //Maybe nicht point sondern die Mitte des gehitteten Körpers?
+            _camTransform.position = transform.position + (Vector3.up * camSphereRaduis) + (hit.distance - camSphereRaduis) * viewOffset; //Maybe nicht point sondern die Mitte des gehitteten Körpers?
         } else {
-            _camTransform.position = transform.position + camDistance * viewOffset;
+            _camTransform.position = transform.position + (Vector3.up * camSphereRaduis) + camDistance * viewOffset;
         }
         
 
