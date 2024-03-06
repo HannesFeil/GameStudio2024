@@ -19,6 +19,8 @@ public class PlayerManagement : MonoBehaviour
     [Range(0, 10)]
     private float camDistance;
 
+    [SerializeField] [Range(0, 1)] private float SphereRaduisHitbox;
+
     [SerializeField]
     [Range(1, 5)]
     private float mouseSensitivityX;
@@ -70,7 +72,7 @@ public class PlayerManagement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void FixedUpdate() // Update_________________________________________________________
     {
         if (!grounded) {
             groundedTimer = Mathf.Max(groundedTimer - 1, -1);
@@ -102,7 +104,7 @@ public class PlayerManagement : MonoBehaviour
         }
 
         float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
+        float mouseY = -1*Input.GetAxis("Mouse Y");
         
         float camXr = _camTransform.rotation.eulerAngles.x + mouseY * mouseSensitivityY;
         float camYr = _camTransform.rotation.eulerAngles.y + mouseX * mouseSensitivityX;
@@ -112,10 +114,10 @@ public class PlayerManagement : MonoBehaviour
         Vector3 viewOffset = -1 * (_camTransform.rotation * Vector3.forward);
         
         RaycastHit hit;
-        bool camCastHit = Physics.Raycast(transform.position, viewOffset, out hit, camDistance);
+        bool camCastHit = Physics.SphereCast(transform.position, SphereRaduisHitbox, viewOffset, out hit, camDistance);
 
         if (camCastHit) {
-            _camTransform.position = transform.position + (hit.distance - 10f) * viewOffset;
+            _camTransform.position = hit.point; //Maybe nicht point sondern die Mitte des gehitteten Körpers?
         } else {
             _camTransform.position = transform.position + camDistance * viewOffset;
         }
