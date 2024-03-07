@@ -11,9 +11,11 @@ public class BirdMove : AnimalMove
     [SerializeField]
     [Range(0,1)]
     private float airMass = 0.5f;
-    void Start()
+
+    private Rigidbody rb;
+    public override void Setup()
     {
-        
+        rb = pm.GetRigidbody();
     }
 
     void FixedUpdate()
@@ -26,7 +28,6 @@ public class BirdMove : AnimalMove
         pm.CamLookAtPlayer();
         CheckJump();
         UpdateRotation();
-        pm.CheckSwap();
 
         if (!pm.IsGrounded())
         {
@@ -35,16 +36,34 @@ public class BirdMove : AnimalMove
 
         if (specialActive)
         {
+            Vector3 velo = rb.velocity;
             CheckJump();
-            pm.GetRigidbody().mass = airMass; //- (flyTimer * 0.1f);
+            //pm.GetRigidbody().mass = airMass; //- (flyTimer * 0.1f);
+            rb.velocity = new Vector3(velo.x, Mathf.Max(velo.y, -0.1f), velo.z);
         }
         
-        if (pm.IsGrounded() ) //|| Tierwechsel)
+        if (pm.IsGrounded())
         {
             pm.GetRigidbody().mass = _groundMass;
         }
         pm.GetRigidbody().AddForce(dir.x * pm.MovementForce, 0, dir.y * pm.MovementForce);
+        pm.CheckSwap();
     }
+    
+    /// <summary>
+    /// Get"s called after this animal is swapped away
+    /// </summary>
+    public override void OnSwappedFrom() {
+        pm.GetRigidbody().mass = _groundMass;
+    }
+
+    /// <summary>
+    /// Get"s called after this animal is swapped to
+    /// </summary>
+    public override void OnSwappedTo() {
+        
+    }
+
     
     // public void CheckJump() 
     // {
