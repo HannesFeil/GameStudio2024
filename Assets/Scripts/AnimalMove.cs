@@ -4,7 +4,6 @@ public abstract class AnimalMove : MonoBehaviour
 {
     protected PlayerManagement pm;
 
-
     /// <summary>
     /// Main tick method of each animal
     /// </summary>
@@ -61,5 +60,28 @@ public abstract class AnimalMove : MonoBehaviour
     public void SetPlayerManagement(PlayerManagement management) 
     {
         pm = management;
+
+        Setup();
+    }
+
+    /// <summary>
+    /// Get's called after the PlayerManagement has been initialized
+    /// </summary>
+    public virtual void Setup() {
+        
+    }
+
+    /// <summary>
+    /// Get"s called after this animal is swapped away
+    /// </summary>
+    public virtual void OnSwappedFrom() {
+        
+    }
+
+    /// <summary>
+    /// Get"s called after this animal is swapped to
+    /// </summary>
+    public virtual void OnSwappedTo() {
+        
     }
 }

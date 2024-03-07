@@ -9,7 +9,8 @@ public class PlayerManagement : MonoBehaviour
 
     [SerializeField] 
     private AnimalTyps animalTyps = AnimalTyps.SNAKE; // Der Typ des Tieres, aus dem enum 
-    
+
+    [Header("Camera")]
     [SerializeField]
     [Range(0, 90)]
     private float camVerticalClampAngle = 70; // Der Kamerawinkel, wie weit man von oben/unten auf den Player schauen kann
@@ -145,7 +146,9 @@ public class PlayerManagement : MonoBehaviour
                 int next = (current + (int) swap + 4) % animals.Length;
         
                 animals[current].SetActive(false);
+                _animalMoves[current].OnSwappedFrom();
                 animals[next].SetActive(true);
+                _animalMoves[next].OnSwappedTo();
 
                 animalTyps = (AnimalTyps) next;
                 _swapped = true;
@@ -198,7 +201,7 @@ public class PlayerManagement : MonoBehaviour
     /// </summary>
     void OnCollisionEnter(Collision collision) 
     {
-        if (collision.GetContact(0).normal.y > 0.9) {
+        if (collision.GetContact(0).normal.y > 0.8) {
             _groundCollisionID = collision.gameObject.GetInstanceID();
             _grounded = true;            
             _groundedTimer = maxGrounded;
