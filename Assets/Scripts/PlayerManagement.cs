@@ -128,6 +128,12 @@ public class PlayerManagement : MonoBehaviour
         
         // Inputs für die Move Methode
         Vector2 inputVec2 = new Vector2(inputVec3.x,inputVec3.z);
+
+        for (int i = 0; i < 4; i++) {
+            if (i != (int) animalTyps) {
+                _animalMoves[i].RegainStamina();
+            }
+        }
         
         // Ruft die Bewegungsmethoden der Tiere (extern) auf
         _animalMoves[(int) animalTyps].Move(inputVec2,specialActive);
