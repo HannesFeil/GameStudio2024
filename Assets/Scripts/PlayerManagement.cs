@@ -199,7 +199,7 @@ public class PlayerManagement : MonoBehaviour
     /// </summary>
     void OnCollisionEnter(Collision collision) 
     {
-        if (collision.GetContact(0).normal.y > 0.9) {
+        if (collision.GetContact(0).normal.y > 0.8) {
             _groundCollisionID = collision.gameObject.GetInstanceID();
             _grounded = true;            
             _groundedTimer = maxGrounded;

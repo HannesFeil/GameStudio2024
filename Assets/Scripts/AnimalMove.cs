@@ -60,5 +60,14 @@ public abstract class AnimalMove : MonoBehaviour
     public void SetPlayerManagement(PlayerManagement management) 
     {
         pm = management;
+
+        Setup();
+    }
+
+    /// <summary>
+    /// Get's called after the PlayerManagement has been initialized
+    /// </summary>
+    protected virtual void Setup() {
+        
     }
 }
