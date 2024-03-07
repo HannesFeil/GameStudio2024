@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class SnakeMove : AnimalMove
@@ -6,7 +7,17 @@ public class SnakeMove : AnimalMove
 
     public bool grappling;
 
-    private bool enableMovementOnNextTouch;
+    private bool _enableMovementOnNextTouch;
+
+    private void Start()
+    {
+        Invoke(nameof(SetDelay),0.1f);
+    }
+
+    private void SetDelay()
+    {
+        gp.SetPm(pm);
+    }
 
     public override void Move(Vector2 dir, bool specialActive)
     {
@@ -50,14 +61,14 @@ public class SnakeMove : AnimalMove
 
     private void setVelocity()
     {
-        enableMovementOnNextTouch = true;
+        _enableMovementOnNextTouch = true;
         pm.GetRigidbody().drag = 0f;
         pm.GetRigidbody().velocity = velocityToSet;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (enableMovementOnNextTouch)
+        if (_enableMovementOnNextTouch)
         {
             turnOf();
         }
