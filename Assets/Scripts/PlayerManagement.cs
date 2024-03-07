@@ -115,6 +115,8 @@ public class PlayerManagement : MonoBehaviour
         float camXr = _camTransform.rotation.eulerAngles.x + mouseY * mouseSensitivityY;
         float camYr = _camTransform.rotation.eulerAngles.y + mouseX * mouseSensitivityX;
 
+        camXr = Mathf.Clamp((camXr + 90) % 360, 10, 170) - 90;
+
         _camTransform.rotation = Quaternion.Euler(camXr, camYr, 0);                
         
         Vector3 viewOffset = -1 * (_camTransform.rotation * Vector3.forward);
