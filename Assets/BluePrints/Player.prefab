@@ -689,7 +689,6 @@ Transform:
   - {fileID: 6941183906937795569}
   - {fileID: 2015258780404083834}
   - {fileID: 7980593852785667372}
-  - {fileID: 4651258574391620867}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1781721796109968684
@@ -759,11 +758,11 @@ MonoBehaviour:
   - {fileID: 8208622597837563813}
   animalTyps: 0
   camVerticalClampAngle: 70
-  camSphereRaduis: 0.3
   camDistance: 5
   zoomCamDistance: 2
   zoomYOffset: 0.5
-  mouseSensitivityX: 6
+  camSphereRaduis: 0.3
+  mouseSensitivityX: 5
   mouseSensitivityY: 2.6
   MovementForce: 10
   AirMovementFactor: 0.5
@@ -1899,37 +1898,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3026608700480645031}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8589318993512106561
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4651258574391620867}
-  m_Layer: 3
-  m_Name: Orientation
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4651258574391620867
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8589318993512106561}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6945159793386286582}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8622609173875255140
 GameObject:
   m_ObjectHideFlags: 0
@@ -1992,7 +1960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f09d9bcdc2d43c4f8dd985d3ca2e72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orientation: {fileID: 4651258574391620867}
+  orientation: {fileID: 6945159793386286582}
   tip: {fileID: 3822551002769311042}
   whatToGrapple:
     serializedVersion: 2
