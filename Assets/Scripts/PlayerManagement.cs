@@ -1,5 +1,5 @@
+using System;
 using UnityEngine;
-
 
 public class PlayerManagement : MonoBehaviour
 {
@@ -16,10 +16,16 @@ public class PlayerManagement : MonoBehaviour
     private GameObject cam;
     
     [SerializeField]
+    [Range(0, 90)]
+    public float CamVerticalClampAngle;
+    
+    [SerializeField]
     [Range(0, 10)]
-    private float camDistance;
+    public float CamDistance;
 
-    [SerializeField] [Range(0, 1)] private float camSphereRaduis;
+    [SerializeField] 
+    [Range(0, 1)] 
+    public float CamSphereRaduis;
 
     [SerializeField]
     [Range(1, 5)]
@@ -31,23 +37,23 @@ public class PlayerManagement : MonoBehaviour
 
     [SerializeField]
     [Range(0f, 20f)]
-    public float movementForce = 10;
+    public float MovementForce = 10;
     
     [SerializeField]
     [Range(0f, 1f)]
-    public float airMovementFactor = 0.5f;
+    public float AirMovementFactor = 0.5f;
 
     [SerializeField]
     [Range(100f, 300f)]
-    public float jumpForce = 200;
+    public float JumpForce = 200;
 
     [SerializeField]
     private Transform orientation;
     
     private Transform _camTransform;
     
-    public Rigidbody rb;
-    public Transform tf;
+    public Rigidbody Rigidbody;
+    public Transform Transform;
 
     [SerializeField]
     [Range(0, 20)]
@@ -65,8 +71,8 @@ public class PlayerManagement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        rb = GetComponentInParent<Rigidbody>();
-        tf = GetComponentInParent<Transform>().transform;
+        Rigidbody = GetComponentInParent<Rigidbody>();
+        Transform = GetComponentInParent<Transform>().transform;
         
         for (int i = 0; i < animals.Length; i++)
         {
@@ -78,22 +84,42 @@ public class PlayerManagement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate() // Update_________________________________________________________
+    void FixedUpdate()
     {
         if (!grounded) {
             groundedTimer = Mathf.Max(groundedTimer - 1, -1);
         }
-
-        if (Input.GetButton("Jump") && IsGrounded()) {
-            animalMove[(int) animalTyps].Jump();
-            groundedTimer = -1;
-        }
     
         float inputH = Input.GetAxis("Horizontal");
         float inputV = Input.GetAxis("Vertical");
-        float swap = Input.GetAxis("Switch");
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = -1*Input.GetAxis("Mouse Y");
         bool specialActive = Input.GetButton("Special");
+        
+        float camXr = _camTransform.rotation.eulerAngles.x + mouseY * mouseSensitivityY;
+        float camYr = _camTransform.rotation.eulerAngles.y + mouseX * mouseSensitivityX;
 
+        camXr = Mathf.Clamp(
+            (camXr + 90) % 360, 
+            90 - CamVerticalClampAngle, 
+            90 + CamVerticalClampAngle
+        ) - 90;
+
+        _camTransform.rotation = Quaternion.Euler(camXr, camYr, 0);                
+
+        Vector3 inputVec3 = new Vector3(inputH, 0, inputV);
+        inputVec3.Normalize();
+        inputVec3 = Quaternion.Euler(0, camYr, 0) * inputVec3;
+        
+        Vector2 inputVec2 = new Vector2(inputVec3.x,inputVec3.z);
+        
+        animalMove[(int) animalTyps].Move(inputVec2,specialActive);
+    }
+
+    public void checkSwap() 
+    {
+        float swap = Input.GetAxis("Switch");
+        
         if (swap != 0) {
             if (swapped != swap) {
                 int current = (int) animalTyps;
@@ -108,53 +134,29 @@ public class PlayerManagement : MonoBehaviour
         } else {
             swapped = 0;
         }
-
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = -1*Input.GetAxis("Mouse Y");
-        
-        float camXr = _camTransform.rotation.eulerAngles.x + mouseY * mouseSensitivityY;
-        float camYr = _camTransform.rotation.eulerAngles.y + mouseX * mouseSensitivityX;
-
-        camXr = Mathf.Clamp((camXr + 90) % 360, 10, 170) - 90;
-
-        _camTransform.rotation = Quaternion.Euler(camXr, camYr, 0);                
-        
-        Vector3 viewOffset = -1 * (_camTransform.rotation * Vector3.forward);
-        
-        RaycastHit hit;
-        bool camCastHit = Physics.SphereCast(tf.position + (Vector3.up * camSphereRaduis), camSphereRaduis, viewOffset, out hit, camDistance);
-
-        if (camCastHit) {
-            _camTransform.position = tf.position + (Vector3.up * camSphereRaduis) + (hit.distance - camSphereRaduis) * viewOffset; //Maybe nicht point sondern die Mitte des gehitteten Körpers?
-        } else {
-            _camTransform.position = tf.position + (Vector3.up * camSphereRaduis) + camDistance * viewOffset;
-        }
-        
-
-        Vector3 inputVec3 = new Vector3(inputH, 0, inputV);
-        inputVec3.Normalize();
-        inputVec3 = Quaternion.Euler(0, camYr, 0) * inputVec3;
-        
-        Vector2 inputVec2 = new Vector2(inputVec3.x,inputVec3.z);
-        
-        if (inputVec3.magnitude > 0.001) {
-            Quaternion targetRotation = Quaternion.LookRotation(inputVec3, Vector3.up);
-            tf.rotation = Quaternion.Lerp(tf.rotation, targetRotation, 0.2f);
-        }
-
-        Vector3 viewDir = tf.position - new Vector3(transform.position.x,tf.position.y,transform.position.z);
-        if(viewDir != Vector3.zero)
-        {
-            orientation.forward = viewDir;
-        }
-        animalMove[(int) animalTyps].Move(inputVec2,specialActive);
     }
 
-    public bool IsGrounded() {
+    public bool IsGrounded() 
+    {
         return groundedTimer >= 0;
     }
 
-    void OnCollisionEnter(Collision collision) {
+    public void camLookAt(Vector3 offset, float distance) 
+    {
+        Vector3 viewOffset = -1 * (_camTransform.rotation * Vector3.forward);
+        
+        RaycastHit hit;
+        bool camCastHit = Physics.SphereCast(Transform.position + offset, CamSphereRaduis, viewOffset, out hit, distance);
+
+        if (camCastHit) {
+            _camTransform.position = Transform.position + offset + (hit.distance - CamSphereRaduis) * viewOffset;
+        } else {
+            _camTransform.position = Transform.position + offset + distance * viewOffset;
+        }
+    }
+
+    void OnCollisionEnter(Collision collision) 
+    {
         if (collision.GetContact(0).normal.y > 0.9) {
             groundCollision = collision.gameObject.GetInstanceID();
             grounded = true;            
@@ -162,9 +164,15 @@ public class PlayerManagement : MonoBehaviour
         }
     }
     
-    void OnCollisionExit(Collision collision) {
+    void OnCollisionExit(Collision collision) 
+    {
         if (collision.gameObject.GetInstanceID() == groundCollision) {
             grounded = false;
         }
+    }
+
+    internal void SetNotGrounded()
+    {
+        groundedTimer = -1;
     }
 }

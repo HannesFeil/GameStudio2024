@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SnakeMove : AnimalMove
@@ -16,9 +14,9 @@ public class SnakeMove : AnimalMove
 
         if (!pm.IsGrounded())
         {
-            dir *= pm.airMovementFactor;
+            dir *= pm.AirMovementFactor;
         }
-        pm.rb.AddForce(dir.x * pm.movementForce, 0, dir.y * pm.movementForce);
+        pm.Rigidbody.AddForce(dir.x * pm.MovementForce, 0, dir.y * pm.MovementForce);
 
         if (specialActive)
         {
@@ -39,7 +37,7 @@ public class SnakeMove : AnimalMove
     private void turnOf()
     {
         grappling = false;
-        pm.rb.drag = 1f;
+        pm.Rigidbody.drag = 1f;
     }
 
     private Vector3 velocityToSet;
@@ -47,8 +45,8 @@ public class SnakeMove : AnimalMove
     private void setVelocity()
     {
         enableMovementOnNextTouch = true;
-        pm.rb.drag = 0f;
-        pm.rb.velocity = velocityToSet;
+        pm.Rigidbody.drag = 0f;
+        pm.Rigidbody.velocity = velocityToSet;
     }
 
     private void OnTriggerEnter(Collider other)
