@@ -170,7 +170,6 @@ public class PlayerManagement : MonoBehaviour
     ///<summary>
     /// Methode bewegt die Kamera und korrigiert ihre Position mit einem SphereCast
     /// </summary>
-    public void camLookAt(Vector3 offset, float distance)  //bitte noch groß schreiben
     public void CamLookAtPlayer()
     {
         Vector3 offset; 
