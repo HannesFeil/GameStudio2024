@@ -752,10 +752,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87f5ec03b3af54a87be9c65228c19792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animals: []
-  animalMove: []
+  animals:
+  - {fileID: 8622609173875255140}
+  - {fileID: 5591038864323884500}
+  - {fileID: 9026714975147923884}
+  - {fileID: 8208622597837563813}
   animalTyps: 0
-  cam: {fileID: 0}
   camVerticalClampAngle: 70
   camSphereRaduis: 0.3
   camDistance: 5

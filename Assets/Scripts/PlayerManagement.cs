@@ -8,14 +8,8 @@ public class PlayerManagement : MonoBehaviour
     private GameObject[] animals;
     
     [SerializeField]
-    private AnimalMove[] animalMove;
-    
-    [SerializeField]
     private AnimalTyps animalTyps = AnimalTyps.SNAKE;
 
-    [SerializeField]
-    private GameObject cam;
-    
     [SerializeField]
     [Range(0, 90)]
     private float camVerticalClampAngle = 70;
@@ -60,6 +54,8 @@ public class PlayerManagement : MonoBehaviour
     [Range(0, 20)]
     private int maxGrounded = 10;
     
+    private AnimalMove[] animalMove;
+    
     private Transform _camTransform;
     private Rigidbody _rigidbody;
     private Transform _transform;
@@ -78,14 +74,18 @@ public class PlayerManagement : MonoBehaviour
 
         _rigidbody = GetComponentInParent<Rigidbody>();
         _transform = GetComponentInParent<Transform>().transform;
-        
+
+        animalMove = new AnimalMove[4];
         for (int i = 0; i < animals.Length; i++)
         {
             animals[i].SetActive((int)animalTyps == i);
+            print(animals[i]);
+            animalMove[i] = animals[i].GetComponent<AnimalMove>();
+            print(animalMove[i]);
             animalMove[i].SetPlayerManagement(this);
         }
 
-        _camTransform = cam.GetComponent<Transform>().transform;
+        _camTransform = GameObject.Find("Main Camera").GetComponent<Transform>().transform;
     }
 
     // Update is called once per frame
