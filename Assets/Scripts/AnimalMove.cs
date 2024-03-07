@@ -6,19 +6,19 @@ public abstract class AnimalMove : MonoBehaviour
 
     public virtual void Move(Vector2 dir, bool specialActive) 
     {
-        pm.camLookAt(Vector3.up * pm.CamSphereRaduis, pm.CamDistance);
-        checkJump();
-        updateRotation();
-        pm.checkSwap();
+        pm.CamLookAtPlayer();
+        CheckJump();
+        UpdateRotation();
+        pm.CheckSwap();
     
         if (!pm.IsGrounded()) {
             dir *= pm.AirMovementFactor;
         }
         
-        pm.Rigidbody.AddForce(dir.x * pm.MovementForce, 0, dir.y * pm.MovementForce);
+        pm.GetRigidbody().AddForce(dir.x * pm.MovementForce, 0, dir.y * pm.MovementForce);
     }
 
-    public void checkJump() 
+    public void CheckJump() 
     {
         if (Input.GetButton("Jump") && pm.IsGrounded()) {
             Jump();
@@ -28,15 +28,18 @@ public abstract class AnimalMove : MonoBehaviour
 
     public void Jump() 
     {
-        pm.Rigidbody.AddForce(0, pm.JumpForce, 0);
+        pm.GetRigidbody().AddForce(0, pm.JumpForce, 0);
     }
 
-    public void updateRotation() 
+    public void UpdateRotation() 
     {
-        if (pm.Rigidbody.velocity.magnitude > 0.001) {
-            Quaternion targetRotation = Quaternion.LookRotation(pm.Rigidbody.velocity, Vector3.up);
-            pm.Transform.rotation = Quaternion.Lerp(pm.Transform.rotation, targetRotation, 0.2f);
+        Quaternion targetRotation;
+        if (pm.GetRigidbody().velocity.magnitude > 0.5) {
+            targetRotation = Quaternion.LookRotation(pm.GetRigidbody().velocity, Vector3.up);
+        } else {
+            targetRotation = Quaternion.Euler(0, pm.transform.rotation.eulerAngles.y, 0);
         }
+        pm.GetTransform().rotation = Quaternion.Lerp(pm.GetTransform().rotation, targetRotation, 0.2f);
     }
 
     public void SetPlayerManagement(PlayerManagement management) 

@@ -10,13 +10,19 @@ public class SnakeMove : AnimalMove
 
     public override void Move(Vector2 dir, bool specialActive)
     {
+        pm.CamLookAtPlayer();
+        CheckJump();
+        UpdateRotation();
+        pm.CheckSwap();
+        
         if (grappling) return;
 
         if (!pm.IsGrounded())
         {
             dir *= pm.AirMovementFactor;
         }
-        pm.Rigidbody.AddForce(dir.x * pm.MovementForce, 0, dir.y * pm.MovementForce);
+        
+        pm.GetRigidbody().AddForce(dir.x * pm.MovementForce, 0, dir.y * pm.MovementForce);
 
         if (specialActive)
         {
@@ -37,7 +43,7 @@ public class SnakeMove : AnimalMove
     private void turnOf()
     {
         grappling = false;
-        pm.Rigidbody.drag = 1f;
+        pm.GetRigidbody().drag = 1f;
     }
 
     private Vector3 velocityToSet;
@@ -45,8 +51,8 @@ public class SnakeMove : AnimalMove
     private void setVelocity()
     {
         enableMovementOnNextTouch = true;
-        pm.Rigidbody.drag = 0f;
-        pm.Rigidbody.velocity = velocityToSet;
+        pm.GetRigidbody().drag = 0f;
+        pm.GetRigidbody().velocity = velocityToSet;
     }
 
     private void OnTriggerEnter(Collider other)

@@ -11,7 +11,7 @@ public class PlayerManagement : MonoBehaviour
     private AnimalMove[] animalMove; //Bewegungsskripte der Tiere
     
     [SerializeField] 
-    private AnimalTyps animalTyps; //der Typ des Tieres, aus dem enum 
+    private AnimalTyps animalTyps = AnimalTyps.SNAKE; //der Typ des Tieres, aus dem enum 
 
     [Header("Camera")]
     [SerializeField]
@@ -19,26 +19,32 @@ public class PlayerManagement : MonoBehaviour
     
     [SerializeField]
     [Range(0, 90)]
-    public float CamVerticalClampAngle; //Der Kamerawinkel, wie weit man von oben/unten auf den Player schauen kann
+    public float CamVerticalClampAngle = 70; //Der Kamerawinkel, wie weit man von oben/unten auf den Player schauen kann
     
     [SerializeField]
     [Range(0, 10)]
-    public float CamDistance; //Die Entfernung zwischen Spieler und Kamera
+    public float CamDistance = 5; //Die Entfernung zwischen Spieler und Kamera
+
+    [SerializeField]
+    [Range(0, 10)]
+    private float zoomCamDistance = 2; //Die Entfernung die heran/weg gezoomt wird
+
+    [SerializeField]
+    [Range(0, 1.5f)]
+    private float zoomYOffset = 0.5f; //Höhenänderung der Kamera beim Zoomen
 
     [SerializeField] 
     [Range(0, 1)] 
-    public float CamSphereRaduis; //Der Raduis der Sphere um die Kamera herum
-    
-    private Transform _camTransform; //Position und Rotation und Skalierung der Kamera
+    public float CamSphereRaduis = 0.3f; //Der Raduis der Sphere um die Kamera herum
 
     [Header("Mouse")]
     [SerializeField]
     [Range(1, 5)]
-    private float mouseSensitivityX; //Bewegungssensibility in X Richtung
+    private float mouseSensitivityX = 6; //Bewegungssensibility in X Richtung
     
     [SerializeField]
     [Range(1, 5)]
-    private float mouseSensitivityY; //Bewegungssensibility in Y Richtung
+    private float mouseSensitivityY = 2.6; //Bewegungssensibility in Y Richtung
 
     [Header("Forces")]
     [SerializeField]
@@ -56,9 +62,9 @@ public class PlayerManagement : MonoBehaviour
     [Header("Bodenvariablen")]
     [SerializeField]
     [Range(0, 20)]
-    private int MAX_GROUNDED = 10; //Max Wert des groundTimers
+    private int maxGrounded = 10; //Max Wert des groundTimers
 
-    private int groundCollision; //ID welches Objekt berührt wird
+    private int groundCollisionID; //ID welches Objekt berührt wird
     private bool grounded; //Ist true, wenn der Boden berührt wird
     private int groundedTimer; //Ist MAX_GROUNDED, wenn der Boden berührt wird
 
@@ -67,6 +73,7 @@ public class PlayerManagement : MonoBehaviour
     
     public Rigidbody Rigidbody; //Der Collider des Spielers???
     public Transform Transform; //Position, Rotation und Skalierung des Spielers
+    private Transform _camTransform; //Position und Rotation und Skalierung der Kamera
     
     // Start is called before the first frame update
     void Start()
@@ -101,7 +108,7 @@ public class PlayerManagement : MonoBehaviour
         float inputV = Input.GetAxis("Vertical");
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = -1*Input.GetAxis("Mouse Y");
-        bool specialActive = Input.GetButton("Special");
+        bool specialActive = Input.GetButton("Fire1");
         
         //berechnet die Kamerarotation um X und Y Achse
         float camXr = _camTransform.rotation.eulerAngles.x + mouseY * mouseSensitivityY;
@@ -112,7 +119,7 @@ public class PlayerManagement : MonoBehaviour
             (camXr + 90) % 360, 
             90 - CamVerticalClampAngle, 
             90 + CamVerticalClampAngle
-        ) - 90; 
+        ) - 90;
 
         //??? Aaron/Hannes fragen
         _camTransform.rotation = Quaternion.Euler(camXr, camYr, 0);                
@@ -132,12 +139,12 @@ public class PlayerManagement : MonoBehaviour
     ///<summary>
     /// Methode mit der man durch die verschiedenen Tiere wechslen kann
     /// </summary>
-    public void checkSwap()  //bitte noch groß schreiben
+    public void CheckSwap()
     {
         float swap = Input.GetAxis("Switch");
         
         if (swap != 0) {
-            if (swapped != swap) {
+            if (_swapped != swap) {
                 int current = (int) animalTyps;
                 int next = (current + (int) swap + 4) % animals.Length;
             
@@ -145,10 +152,10 @@ public class PlayerManagement : MonoBehaviour
                 animals[next].SetActive(true);
 
                 animalTyps = (AnimalTyps) next;
-                swapped = swap;
+                _swapped = swap;
             }
         } else {
-            swapped = 0;
+            _swapped = 0;
         }
     }
 
@@ -157,23 +164,35 @@ public class PlayerManagement : MonoBehaviour
     /// </summary>
     public bool IsGrounded() 
     {
-        return groundedTimer >= 0;
+        return _groundedTimer >= 0;
     }
 
     ///<summary>
     /// Methode bewegt die Kamera und korrigiert ihre Position mit einem SphereCast
     /// </summary>
     public void camLookAt(Vector3 offset, float distance)  //bitte noch groß schreiben
+    public void CamLookAtPlayer()
     {
+        Vector3 offset; 
+        float distance;
+        
+        if (Input.GetButton("Fire2")) {
+            offset = Vector3.up * (camSphereRaduis + zoomYOffset);
+            distance = zoomCamDistance;
+        } else {
+            offset= Vector3.up * camSphereRaduis; 
+            distance = camDistance;
+        }
+        
         Vector3 viewOffset = -1 * (_camTransform.rotation * Vector3.forward);
         
         RaycastHit hit;
-        bool camCastHit = Physics.SphereCast(Transform.position + offset, CamSphereRaduis, viewOffset, out hit, distance);
+        bool camCastHit = Physics.SphereCast(_transform.position + offset, camSphereRaduis, viewOffset, out hit, distance);
 
         if (camCastHit) {
-            _camTransform.position = Transform.position + offset + (hit.distance - CamSphereRaduis) * viewOffset;
+            _camTransform.position = _transform.position + offset + (hit.distance - camSphereRaduis) * viewOffset;
         } else {
-            _camTransform.position = Transform.position + offset + distance * viewOffset;
+            _camTransform.position = _transform.position + offset + distance * viewOffset;
         }
     }
 
@@ -185,9 +204,9 @@ public class PlayerManagement : MonoBehaviour
     void OnCollisionEnter(Collision collision) 
     {
         if (collision.GetContact(0).normal.y > 0.9) {
-            groundCollision = collision.gameObject.GetInstanceID();
-            grounded = true;            
-            groundedTimer = MAX_GROUNDED;
+            _groundCollisionID = collision.gameObject.GetInstanceID();
+            _grounded = true;            
+            _groundedTimer = maxGrounded;
         }
     }
     
@@ -197,8 +216,8 @@ public class PlayerManagement : MonoBehaviour
     /// </summary>
     void OnCollisionExit(Collision collision) 
     {
-        if (collision.gameObject.GetInstanceID() == groundCollision) {
-            grounded = false;
+        if (collision.gameObject.GetInstanceID() == _groundCollisionID) {
+            _grounded = false;
         }
     }
 
@@ -207,6 +226,14 @@ public class PlayerManagement : MonoBehaviour
     /// </summary>
     internal void SetNotGrounded()
     {
-        groundedTimer = -1;
+        _groundedTimer = -1;
+    }
+
+    public Rigidbody GetRigidbody() {
+        return _rigidbody;
+    }
+    
+    public Transform GetTransform() {
+        return _transform;
     }
 }
