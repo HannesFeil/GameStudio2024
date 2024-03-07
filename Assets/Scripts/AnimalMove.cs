@@ -4,7 +4,6 @@ public abstract class AnimalMove : MonoBehaviour
 {
     protected PlayerManagement pm;
 
-
     /// <summary>
     /// Main tick method of each animal
     /// </summary>

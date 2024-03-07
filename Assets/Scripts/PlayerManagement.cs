@@ -9,7 +9,8 @@ public class PlayerManagement : MonoBehaviour
 
     [SerializeField] 
     private AnimalTyps animalTyps = AnimalTyps.SNAKE; // Der Typ des Tieres, aus dem enum 
-    
+
+    [Header("Camera")]
     [SerializeField]
     [Range(0, 90)]
     private float camVerticalClampAngle = 70; // Der Kamerawinkel, wie weit man von oben/unten auf den Player schauen kann
