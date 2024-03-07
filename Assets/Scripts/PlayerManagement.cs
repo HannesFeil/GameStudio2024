@@ -146,7 +146,9 @@ public class PlayerManagement : MonoBehaviour
                 int next = (current + (int) swap + 4) % animals.Length;
         
                 animals[current].SetActive(false);
+                _animalMoves[current].OnSwappedFrom();
                 animals[next].SetActive(true);
+                _animalMoves[next].OnSwappedTo();
 
                 animalTyps = (AnimalTyps) next;
                 _swapped = true;

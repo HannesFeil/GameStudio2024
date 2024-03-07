@@ -67,7 +67,21 @@ public abstract class AnimalMove : MonoBehaviour
     /// <summary>
     /// Get's called after the PlayerManagement has been initialized
     /// </summary>
-    protected virtual void Setup() {
+    public virtual void Setup() {
+        
+    }
+
+    /// <summary>
+    /// Get"s called after this animal is swapped away
+    /// </summary>
+    public virtual void OnSwappedFrom() {
+        
+    }
+
+    /// <summary>
+    /// Get"s called after this animal is swapped to
+    /// </summary>
+    public virtual void OnSwappedTo() {
         
     }
 }
