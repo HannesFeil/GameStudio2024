@@ -3,6 +3,8 @@ using UnityEngine;
 public abstract class AnimalMove : MonoBehaviour
 {
     protected PlayerManagement pm;
+    protected float stamina = 100;
+    protected float maxStamina = 100;
 
     /// <summary>
     /// Main tick method of each animal
@@ -12,13 +14,13 @@ public abstract class AnimalMove : MonoBehaviour
         pm.CamLookAtPlayer();
         CheckJump();
         UpdateRotation();
-        pm.CheckSwap();
     
         if (!pm.IsGrounded()) {
             dir *= pm.AirMovementFactor;
         }
         
         pm.GetRigidbody().AddForce(dir.x * pm.MovementForce, 0, dir.y * pm.MovementForce);
+        pm.CheckSwap();
     }
 
     /// <summary>
@@ -52,6 +54,10 @@ public abstract class AnimalMove : MonoBehaviour
             targetRotation = Quaternion.Euler(0, pm.transform.rotation.eulerAngles.y, 0);
         }
         pm.GetTransform().rotation = Quaternion.Lerp(pm.GetTransform().rotation, targetRotation, 0.2f);
+    }
+
+    public void RegainStamina() {
+        stamina = Mathf.Min(maxStamina, stamina + 0.1f);
     }
 
     /// <summary>
