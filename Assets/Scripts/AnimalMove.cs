@@ -6,7 +6,7 @@ public abstract class AnimalMove : MonoBehaviour
 {
     protected PlayerManagement pm;
 
-    public void Move(Vector2 dir, bool specialActive) {
+    public virtual void Move(Vector2 dir, bool specialActive) {
         if (!pm.IsGrounded()) {
             dir *= pm.airMovementFactor;
         }

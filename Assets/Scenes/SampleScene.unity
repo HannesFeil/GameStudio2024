@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17847909, g: 0.22347714, b: 0.30546692, a: 1}
+  m_IndirectSpecularColor: {r: 0.17847942, g: 0.22347789, b: 0.30546826, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -948,6 +948,11 @@ PrefabInstance:
       propertyPath: SphereRaduisHitbox
       value: 0.046
       objectReference: {fileID: 0}
+    - target: {fileID: 6698313365989930843, guid: bf077a898056441e6b6e38dd48137ce6,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 330585546}
     - target: {fileID: 6945159793386286582, guid: bf077a898056441e6b6e38dd48137ce6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -998,7 +1003,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7780090349767850544, guid: bf077a898056441e6b6e38dd48137ce6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

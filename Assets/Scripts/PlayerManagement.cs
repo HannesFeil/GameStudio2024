@@ -40,11 +40,14 @@ public class PlayerManagement : MonoBehaviour
     [SerializeField]
     [Range(100f, 300f)]
     public float jumpForce = 200;
+
+    [SerializeField]
+    private Transform orientation;
     
     private Transform _camTransform;
     
     public Rigidbody rb;
-    public Transform transform;
+    public Transform tf;
 
     [SerializeField]
     [Range(0, 20)]
@@ -59,8 +62,11 @@ public class PlayerManagement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         rb = GetComponentInParent<Rigidbody>();
-        transform = GetComponentInParent<Transform>().transform;
+        tf = GetComponentInParent<Transform>().transform;
         
         for (int i = 0; i < animals.Length; i++)
         {
@@ -86,7 +92,7 @@ public class PlayerManagement : MonoBehaviour
         float inputH = Input.GetAxis("Horizontal");
         float inputV = Input.GetAxis("Vertical");
         float swap = Input.GetAxis("Switch");
-        bool specialActive = Input.GetButtonDown("Special");
+        bool specialActive = Input.GetButton("Special");
 
         if (swap != 0) {
             if (swapped != swap) {
@@ -114,12 +120,12 @@ public class PlayerManagement : MonoBehaviour
         Vector3 viewOffset = -1 * (_camTransform.rotation * Vector3.forward);
         
         RaycastHit hit;
-        bool camCastHit = Physics.SphereCast(transform.position + (Vector3.up * camSphereRaduis), camSphereRaduis, viewOffset, out hit, camDistance);
+        bool camCastHit = Physics.SphereCast(tf.position + (Vector3.up * camSphereRaduis), camSphereRaduis, viewOffset, out hit, camDistance);
 
         if (camCastHit) {
-            _camTransform.position = transform.position + (Vector3.up * camSphereRaduis) + (hit.distance - camSphereRaduis) * viewOffset; //Maybe nicht point sondern die Mitte des gehitteten Körpers?
+            _camTransform.position = tf.position + (Vector3.up * camSphereRaduis) + (hit.distance - camSphereRaduis) * viewOffset; //Maybe nicht point sondern die Mitte des gehitteten Körpers?
         } else {
-            _camTransform.position = transform.position + (Vector3.up * camSphereRaduis) + camDistance * viewOffset;
+            _camTransform.position = tf.position + (Vector3.up * camSphereRaduis) + camDistance * viewOffset;
         }
         
 
@@ -131,7 +137,13 @@ public class PlayerManagement : MonoBehaviour
         
         if (inputVec3.magnitude > 0.001) {
             Quaternion targetRotation = Quaternion.LookRotation(inputVec3, Vector3.up);
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.2f);
+            tf.rotation = Quaternion.Lerp(tf.rotation, targetRotation, 0.2f);
+        }
+
+        Vector3 viewDir = tf.position - new Vector3(transform.position.x,tf.position.y,transform.position.z);
+        if(viewDir != Vector3.zero)
+        {
+            orientation.forward = viewDir;
         }
         animalMove[(int) animalTyps].Move(inputVec2,specialActive);
     }
