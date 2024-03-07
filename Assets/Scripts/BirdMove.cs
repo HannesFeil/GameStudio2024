@@ -15,6 +15,7 @@ public class BirdMove : AnimalMove
     private Rigidbody rb;
     public override void Setup()
     {
+        print("BIRD");
         rb = pm.GetRigidbody();
     }
 

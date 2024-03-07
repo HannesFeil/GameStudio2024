@@ -7,7 +7,6 @@ public class Grappling : MonoBehaviour
 {
     private SnakeMove _sm;
     private PlayerManagement _pm;
-    public Transform orientation;
     public Transform tip;
     public LayerMask whatToGrapple;
     public LineRenderer lr;
@@ -19,7 +18,7 @@ public class Grappling : MonoBehaviour
 
     private Vector3 _grapplePoint;
 
-    private bool _grappling;
+    public bool GrapplingNow;
 
     [SerializeField] private float grapplingCd;
     private float _grapplingCdTimer;
@@ -35,7 +34,7 @@ public class Grappling : MonoBehaviour
     {
         if (_grapplingCdTimer > 0) return;
 
-        _grappling = true;
+        GrapplingNow = true;
 
         RaycastHit hit;
         if (Physics.Raycast(_pm.GetCamTransform().position, _pm.GetCamDir(), out hit, maxDistance, whatToGrapple))
@@ -68,7 +67,7 @@ public class Grappling : MonoBehaviour
 
     public void StopGrapple()
     {
-        _grappling = false;
+        GrapplingNow = false;
         _grapplingCdTimer = grapplingCd;
         lr.enabled = false;
     }
@@ -83,7 +82,7 @@ public class Grappling : MonoBehaviour
 
     private void LateUpdate()
     {
-        if(_grappling)
+        if(GrapplingNow)
         {
             lr.SetPosition(0, tip.position);
         }

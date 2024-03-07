@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class LizardMove : AnimalMove
 {
+
+    public override void Setup()
+    {
+        print("LIZZARD");
+    }
+
     /// <summary>
     /// Main tick method of each animal
     /// </summary>

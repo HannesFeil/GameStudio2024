@@ -3,30 +3,38 @@ using UnityEngine;
 
 public class SnakeMove : AnimalMove
 {
-    [SerializeField] private Grappling gp;
-
-    public bool grappling;
+    [SerializeField] private Grappling _gp;
+    [SerializeField] private Swing _sw;
 
     private bool _enableMovementOnNextTouch;
 
-    private void Start()
+    public override void Setup()
     {
-        Invoke(nameof(SetDelay),0.1f);
-    }
-
-    private void SetDelay()
-    {
-        gp.SetPm(pm);
+        print("SNAKE");
+        _gp.SetPm(pm);
+        _sw.SetPm(pm);
     }
 
     public override void Move(Vector2 dir, bool specialActive)
     {
-        pm.CamLookAtPlayer();
-        CheckJump();
-        UpdateRotation();
-        pm.CheckSwap();
         
-        if (grappling) return;
+        pm.CamLookAtPlayer();
+        UpdateRotation();
+        _sw.CheckForSwingPoints();
+        
+        if (_gp.GrapplingNow) return;
+
+        if (_sw.Swingin)
+        {
+            _sw.OdmGearMovement();
+        }
+        else
+        {
+            CheckJump();
+            pm.CheckSwap();
+        }
+
+
 
         if (!pm.IsGrounded())
         {
@@ -37,14 +45,16 @@ public class SnakeMove : AnimalMove
 
         if (specialActive)
         {
-            gp.StartGrapple();
-
+            //gp.StartGrapple();
+            _sw.StartSwing();
+        } else 
+        { 
+            _sw.StopSwing();
         }
     }
 
     public void JumpToPosition(Vector3 target, float trajectoryHeight)
     {
-        grappling = true;
         velocityToSet = CalculateJumpVelocity(transform.position, target, trajectoryHeight);
         Invoke(nameof(setVelocity), 0.1f);
 
@@ -53,7 +63,6 @@ public class SnakeMove : AnimalMove
 
     private void turnOf()
     {
-        grappling = false;
         pm.GetRigidbody().drag = 1f;
     }
 

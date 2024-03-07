@@ -87,7 +87,9 @@ public class PlayerManagement : MonoBehaviour
         for (int i = 0; i < animals.Length; i++) 
         {
             animals[i].SetActive((int) animalTyps == i);
-            _animalMoves[i] = animals[i].GetComponent<AnimalMove>();
+            AnimalMove am = animals[i].GetComponent<AnimalMove>();
+            print(am);
+            _animalMoves[i] = am;
             _animalMoves[i].SetPlayerManagement(this);
         }
     }
