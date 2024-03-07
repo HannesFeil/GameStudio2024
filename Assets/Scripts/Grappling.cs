@@ -35,6 +35,7 @@ public class Grappling : MonoBehaviour
 
         grappling = true;
 
+
         RaycastHit hit;
         if (Physics.Raycast(orientation.position, orientation.forward, out hit, maxDistance, whatToGrapple))
         {

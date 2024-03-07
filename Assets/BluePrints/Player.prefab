@@ -276,7 +276,7 @@ Transform:
   m_GameObject: {fileID: 1394222011359299330}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -310,7 +310,7 @@ Transform:
   m_GameObject: {fileID: 1477757795834183973}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -401,7 +401,7 @@ Transform:
   m_GameObject: {fileID: 1674844518045326230}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -739,7 +739,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.4
-  m_Center: {x: 0, y: 0.35, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5043575955740959952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -752,29 +752,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87f5ec03b3af54a87be9c65228c19792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animals:
-  - {fileID: 8622609173875255140}
-  - {fileID: 5591038864323884500}
-  - {fileID: 9026714975147923884}
-  - {fileID: 8208622597837563813}
-  animalMove:
-  - {fileID: 3040386248081653194}
-  - {fileID: 3615979185299347821}
-  - {fileID: 3405214834486547940}
-  - {fileID: 6714493633433685869}
-  animalTyps: 3
-  cam: {fileID: 2983922382756872299}
-  camDistance: 0
-  camSphereRaduis: 0
-  mouseSensitivityX: 0
-  mouseSensitivityY: 0
-  movementForce: 10
-  airMovementFactor: 0.75
-  jumpForce: 250
-  orientation: {fileID: 4651258574391620867}
-  rb: {fileID: 0}
-  tf: {fileID: 0}
-  MAX_GROUNDED: 10
+  animals: []
+  animalMove: []
+  animalTyps: 0
+  cam: {fileID: 0}
+  camVerticalClampAngle: 70
+  camSphereRaduis: 0.3
+  camDistance: 5
+  zoomCamDistance: 2
+  zoomYOffset: 0.5
+  mouseSensitivityX: 6
+  mouseSensitivityY: 2.6
+  MovementForce: 10
+  AirMovementFactor: 0.5
+  JumpForce: 200
+  maxGrounded: 10
 --- !u!1 &3019193527535933221
 GameObject:
   m_ObjectHideFlags: 0
@@ -1674,7 +1666,7 @@ Transform:
   m_GameObject: {fileID: 7359637874358909033}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2006,7 +1998,7 @@ MonoBehaviour:
   lr: {fileID: 397744161984693961}
   maxDistance: 25
   DelayTime: 0.25
-  overshootYAxis: 4
+  overshootYAxis: 1
   grapplingCD: 1
 --- !u!135 &5346675157279143172
 SphereCollider:
@@ -2028,7 +2020,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.4
-  m_Center: {x: 0, y: 0.35, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8862028222614462506
 GameObject:
   m_ObjectHideFlags: 0
@@ -2152,7 +2144,7 @@ Transform:
   m_GameObject: {fileID: 8866826523200312739}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.602, z: 0.3553}
+  m_LocalPosition: {x: 0, y: 0.312, z: 0.3553}
   m_LocalScale: {x: 0.09, y: 0.05, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:

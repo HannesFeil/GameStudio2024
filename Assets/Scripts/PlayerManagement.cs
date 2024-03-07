@@ -3,37 +3,46 @@ using UnityEngine;
 
 public class PlayerManagement : MonoBehaviour
 {
+    [Header("Animals")]
     [SerializeField] 
     private GameObject[] animals;
     
     [SerializeField]
     private AnimalMove[] animalMove;
     
-    [SerializeField] 
-    private AnimalTyps animalTyps;
+    [SerializeField]
+    private AnimalTyps animalTyps = AnimalTyps.SNAKE;
 
     [SerializeField]
     private GameObject cam;
     
     [SerializeField]
     [Range(0, 90)]
-    public float CamVerticalClampAngle;
+    private float camVerticalClampAngle = 70;
+    
+    [SerializeField] 
+    [Range(0, 1)] 
+    private float camSphereRaduis = 0.3f;
     
     [SerializeField]
     [Range(0, 10)]
-    public float CamDistance;
-
-    [SerializeField] 
-    [Range(0, 1)] 
-    public float CamSphereRaduis;
-
-    [SerializeField]
-    [Range(1, 5)]
-    private float mouseSensitivityX;
+    private float camDistance = 5;
     
     [SerializeField]
-    [Range(1, 5)]
-    private float mouseSensitivityY;
+    [Range(0, 10)]
+    private float zoomCamDistance = 2;
+
+    [SerializeField]
+    [Range(0, 1.5f)]
+    private float zoomYOffset = 0.5f;
+
+    [SerializeField]
+    [Range(0, 10)]
+    private float mouseSensitivityX = 6;
+    
+    [SerializeField]
+    [Range(0, 5)]
+    private float mouseSensitivityY = 2.6f;
 
     [SerializeField]
     [Range(0f, 20f)]
@@ -48,22 +57,18 @@ public class PlayerManagement : MonoBehaviour
     public float JumpForce = 200;
 
     [SerializeField]
-    private Transform orientation;
+    [Range(0, 20)]
+    private int maxGrounded = 10;
     
     private Transform _camTransform;
-    
-    public Rigidbody Rigidbody;
-    public Transform Transform;
+    private Rigidbody _rigidbody;
+    private Transform _transform;
 
-    [SerializeField]
-    [Range(0, 20)]
-    private int MAX_GROUNDED = 10;
+    private int _groundCollisionID;
+    private bool _grounded;
+    private int _groundedTimer;
 
-    private int groundCollision;
-    private bool grounded;
-    private int groundedTimer;
-
-    private float swapped;
+    private float _swapped;
     
     // Start is called before the first frame update
     void Start()
@@ -71,8 +76,8 @@ public class PlayerManagement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        Rigidbody = GetComponentInParent<Rigidbody>();
-        Transform = GetComponentInParent<Transform>().transform;
+        _rigidbody = GetComponentInParent<Rigidbody>();
+        _transform = GetComponentInParent<Transform>().transform;
         
         for (int i = 0; i < animals.Length; i++)
         {
@@ -86,23 +91,23 @@ public class PlayerManagement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!grounded) {
-            groundedTimer = Mathf.Max(groundedTimer - 1, -1);
+        if (!_grounded) {
+            _groundedTimer = Mathf.Max(_groundedTimer - 1, -1);
         }
     
         float inputH = Input.GetAxis("Horizontal");
         float inputV = Input.GetAxis("Vertical");
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = -1*Input.GetAxis("Mouse Y");
-        bool specialActive = Input.GetButton("Special");
+        bool specialActive = Input.GetButton("Fire1");
         
         float camXr = _camTransform.rotation.eulerAngles.x + mouseY * mouseSensitivityY;
         float camYr = _camTransform.rotation.eulerAngles.y + mouseX * mouseSensitivityX;
 
         camXr = Mathf.Clamp(
             (camXr + 90) % 360, 
-            90 - CamVerticalClampAngle, 
-            90 + CamVerticalClampAngle
+            90 - camVerticalClampAngle, 
+            90 + camVerticalClampAngle
         ) - 90;
 
         _camTransform.rotation = Quaternion.Euler(camXr, camYr, 0);                
@@ -116,12 +121,12 @@ public class PlayerManagement : MonoBehaviour
         animalMove[(int) animalTyps].Move(inputVec2,specialActive);
     }
 
-    public void checkSwap() 
+    public void CheckSwap() 
     {
         float swap = Input.GetAxis("Switch");
         
         if (swap != 0) {
-            if (swapped != swap) {
+            if (_swapped != swap) {
                 int current = (int) animalTyps;
                 int next = (current + (int) swap + 4) % animals.Length;
             
@@ -129,50 +134,69 @@ public class PlayerManagement : MonoBehaviour
                 animals[next].SetActive(true);
 
                 animalTyps = (AnimalTyps) next;
-                swapped = swap;
+                _swapped = swap;
             }
         } else {
-            swapped = 0;
+            _swapped = 0;
         }
     }
 
     public bool IsGrounded() 
     {
-        return groundedTimer >= 0;
+        return _groundedTimer >= 0;
     }
 
-    public void camLookAt(Vector3 offset, float distance) 
+    public void CamLookAtPlayer() 
     {
+        Vector3 offset; 
+        float distance;
+        
+        if (Input.GetButton("Fire2")) {
+            offset = Vector3.up * (camSphereRaduis + zoomYOffset);
+            distance = zoomCamDistance;
+        } else {
+            offset= Vector3.up * camSphereRaduis; 
+            distance = camDistance;
+        }
+        
         Vector3 viewOffset = -1 * (_camTransform.rotation * Vector3.forward);
         
         RaycastHit hit;
-        bool camCastHit = Physics.SphereCast(Transform.position + offset, CamSphereRaduis, viewOffset, out hit, distance);
+        bool camCastHit = Physics.SphereCast(_transform.position + offset, camSphereRaduis, viewOffset, out hit, distance);
 
         if (camCastHit) {
-            _camTransform.position = Transform.position + offset + (hit.distance - CamSphereRaduis) * viewOffset;
+            _camTransform.position = _transform.position + offset + (hit.distance - camSphereRaduis) * viewOffset;
         } else {
-            _camTransform.position = Transform.position + offset + distance * viewOffset;
+            _camTransform.position = _transform.position + offset + distance * viewOffset;
         }
     }
 
     void OnCollisionEnter(Collision collision) 
     {
         if (collision.GetContact(0).normal.y > 0.9) {
-            groundCollision = collision.gameObject.GetInstanceID();
-            grounded = true;            
-            groundedTimer = MAX_GROUNDED;
+            _groundCollisionID = collision.gameObject.GetInstanceID();
+            _grounded = true;            
+            _groundedTimer = maxGrounded;
         }
     }
     
     void OnCollisionExit(Collision collision) 
     {
-        if (collision.gameObject.GetInstanceID() == groundCollision) {
-            grounded = false;
+        if (collision.gameObject.GetInstanceID() == _groundCollisionID) {
+            _grounded = false;
         }
     }
 
     internal void SetNotGrounded()
     {
-        groundedTimer = -1;
+        _groundedTimer = -1;
+    }
+
+    public Rigidbody GetRigidbody() {
+        return _rigidbody;
+    }
+    
+    public Transform GetTransform() {
+        return _transform;
     }
 }
