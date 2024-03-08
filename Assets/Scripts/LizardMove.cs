@@ -2,17 +2,22 @@ using UnityEngine;
 
 public class LizardMove : AnimalMove
 {
+    [SerializeField]
+    bool infiniteStamina = false;
+    
+    [SerializeField]
+    float wallJumpFactor = 2f;
+
+    private float _wallJumpTimer = 0;
+    private float _wallJumpTimerMax = 10;
+    
     /// <summary>
     /// Main tick method of each animal
     /// </summary>
     public override void Move(Vector2 dir, bool specialActive) 
     {
+        _wallJumpTimer = Mathf.Max(0, _wallJumpTimer - 1);
         pm.CamLookAtPlayer();
-        CheckJump();
-    
-        if (!pm.IsGrounded()) {
-            dir *= pm.AirMovementFactor;
-        }
 
         Vector3 forceDir = new Vector3(dir.x * pm.MovementForce, 0, dir.y * pm.MovementForce);
 
@@ -28,19 +33,30 @@ public class LizardMove : AnimalMove
         }
         
         if (onWall) {
-            stamina -= 0.1f;
+            if (!infiniteStamina) {
+                stamina -= 0.1f;
+            }
+            
             print(stamina);
             pm.GetRigidbody().useGravity = false;
             UpdateWallRotation(hit.normal);
             pm.GetRigidbody().AddForce(
-                Quaternion.AngleAxis(90, Vector3.Cross(-pm.GetTransform().up, Vector3.up))
+                Quaternion.FromToRotation(Vector3.up, hit.normal)
                 * forceDir
                 + -pm.GetTransform().up * 0.1f
             );
+            if (Input.GetButton("Jump") && _wallJumpTimer == 0) {
+                _wallJumpTimer = _wallJumpTimerMax;
+                pm.GetRigidbody().AddForce(Vector3.Lerp(Vector3.up, hit.normal, 0.5f) * pm.JumpForce * wallJumpFactor);
+            }
         } else {
             pm.GetRigidbody().useGravity = true;
             UpdateRotation();
+            if (!pm.IsGrounded()) {
+                dir *= pm.AirMovementFactor;
+            }
             pm.GetRigidbody().AddForce(forceDir);
+            CheckJump();
         }
                 
         pm.CheckSwap();
