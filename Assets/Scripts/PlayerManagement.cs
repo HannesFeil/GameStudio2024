@@ -53,6 +53,8 @@ public class PlayerManagement : MonoBehaviour
     [Range(100f, 300f)]
     public float JumpForce = 200; // Kraft die beim Springen auf den Spieler wirkt
 
+    [SerializeField] [Range(0f, 1f)] private float standartDrag = 0.7f;
+    
     [Header("Bodenvariablen")]
     [SerializeField]
     [Range(0, 20)]
@@ -261,5 +263,10 @@ public class PlayerManagement : MonoBehaviour
     /// </summary>
     public Vector3 GetCamDir() {
         return _camTransform.rotation * Vector3.forward;
+    }
+
+    public void DragReset()
+    {
+        _rigidbody.drag = standartDrag;
     }
 }

@@ -95,4 +95,9 @@ public class SnakeMove : AnimalMove
 
         return velocityXZ + velocityY;
     }
+
+    public override void OnSwappedFrom()
+    {
+        pm.DragReset();
+    }
 }

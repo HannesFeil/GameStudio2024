@@ -12,8 +12,9 @@ public class Swing : MonoBehaviour
     public Transform tip;
     public LayerMask whatToGrapple;
     public LineRenderer lr;
-
-    [SerializeField] float maxDistance;
+    
+    [SerializeField] float swingDrag = 0.1f;
+    [SerializeField] float maxDistance = 25f;
     private Vector3 _currentGrapplePosition;
     private Vector3 _swingPoint;
     private SpringJoint _joint;
@@ -37,6 +38,7 @@ public class Swing : MonoBehaviour
 
         if (predictionHit.point == Vector3.zero) return;
 
+            _pm.GetRigidbody().drag = swingDrag;
             predictionPoint.gameObject.SetActive(false);
             lr.enabled = true;
             _currentGrapplePosition = tip.position;
@@ -94,6 +96,7 @@ public class Swing : MonoBehaviour
 
     public void StopSwing()
     {
+        _pm.DragReset();
         _currentGrapplePosition = tip.position;
         Swingin = false;
         lr.positionCount = 0;
