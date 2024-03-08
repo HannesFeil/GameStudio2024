@@ -79,7 +79,7 @@ public class SnakeMove : AnimalMove
 
     private void OnTriggerEnter(Collider other)
     {
-        if(!_sw.Swingin) pm.DragReset();
+        if(!_sw.Swingin) pm.ResetDrag();
         if (_enableMovementOnNextTouch)
         {
             turnOf();
@@ -101,6 +101,6 @@ public class SnakeMove : AnimalMove
 
     public override void OnSwappedFrom()
     {
-        pm.DragReset();
+        pm.ResetDrag();
     }
 }

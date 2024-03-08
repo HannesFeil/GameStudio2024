@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class Swing : MonoBehaviour
@@ -13,9 +9,13 @@ public class Swing : MonoBehaviour
     public LayerMask whatToGrapple;
     public LineRenderer lr;
     
-    [SerializeField] private float swingDrag = 0.1f;
-    [SerializeField] private float maxDistance = 25f;
-    [SerializeField] private float extantion = 5f;
+    [SerializeField] 
+    private float swingDrag = 0.1f;
+    [SerializeField] 
+    private float maxDistance = 25f;
+    [SerializeField] 
+    private float extantion = 5f;
+
     private Vector3 _currentGrapplePosition;
     private Vector3 _swingPoint;
     private SpringJoint _joint;
@@ -57,7 +57,7 @@ public class Swing : MonoBehaviour
             _joint.maxDistance = distanceFromPoint * 0.8f;
             _joint.minDistance = distanceFromPoint * 0.25f;
 
-            _joint.spring = 4.5f;
+            _joint.spring = 10f;
             _joint.damper = 7f;
             _joint.massScale = 4.5f;
 
@@ -119,8 +119,8 @@ public class Swing : MonoBehaviour
         if (Input.GetKey(KeyCode.S))
         {
             float distanceFromPoint = Vector3.Distance(_pm.GetTransform().position, _swingPoint);
-            _joint.maxDistance = distanceFromPoint * 0.8f + extantion;
-            _joint.minDistance = distanceFromPoint * 0.25f + extantion;
+            _joint.maxDistance = Mathf.Min(maxDistance, distanceFromPoint * 0.8f + extantion);
+            _joint.minDistance = Mathf.Min(maxDistance, distanceFromPoint * 0.25f + extantion);
         }
     }
 

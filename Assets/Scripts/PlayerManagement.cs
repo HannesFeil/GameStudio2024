@@ -56,7 +56,9 @@ public class PlayerManagement : MonoBehaviour
     [Range(100f, 300f)]
     public float JumpForce = 200; // Kraft die beim Springen auf den Spieler wirkt
 
-    [SerializeField] [Range(0f, 1f)] private float standartDrag = 0.7f;
+    [SerializeField] 
+    [Range(0f, 1f)] 
+    private float standardDrag = 0.7f;
     
     [Header("Bodenvariablen")]
     [SerializeField]
@@ -86,6 +88,8 @@ public class PlayerManagement : MonoBehaviour
         _rigidbody = GetComponentInParent<Rigidbody>();
         _transform = GetComponentInParent<Transform>().transform;
         _camTransform = GameObject.Find("Main Camera").GetComponent<Transform>().transform;
+
+        ResetDrag();
         
         // Setzt alle Tiere an die gleiche Stelle und nur ein Tier wird sichtbar
         _animalMoves = new AnimalMove[4];
@@ -136,7 +140,7 @@ public class PlayerManagement : MonoBehaviour
         Vector2 inputVec2 = new Vector2(inputVec3.x,inputVec3.z);
 
         for (int i = 0; i < 4; i++) {
-            if (i != (int) animalTyps) {
+            if (i != (int) animalTyps || infiniteStamina) {
                 _animalMoves[i].RegainStamina();
                 if (infiniteStamina) {
                     _animalMoves[i].stamina = 100;
@@ -270,8 +274,8 @@ public class PlayerManagement : MonoBehaviour
         return _camTransform.rotation * Vector3.forward;
     }
 
-    public void DragReset()
+    public void ResetDrag()
     {
-        _rigidbody.drag = standartDrag;
+        _rigidbody.drag = standardDrag;
     }
 }

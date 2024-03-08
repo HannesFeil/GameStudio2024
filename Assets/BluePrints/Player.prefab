@@ -700,7 +700,7 @@ Rigidbody:
   m_GameObject: {fileID: 2983922382756872299}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 1
+  m_Drag: 0.5
   m_AngularDrag: 0.7
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -737,7 +737,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.4
+  m_Radius: 0.35
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5043575955740959952
 MonoBehaviour:
@@ -751,6 +751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87f5ec03b3af54a87be9c65228c19792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infiniteStamina: 1
   animals:
   - {fileID: 8622609173875255140}
   - {fileID: 5591038864323884500}
@@ -767,6 +768,7 @@ MonoBehaviour:
   MovementForce: 10
   AirMovementFactor: 0.5
   JumpForce: 200
+  standardDrag: 0.5
   maxGrounded: 10
 --- !u!1 &3019193527535933221
 GameObject:
@@ -1376,6 +1378,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af505a406d6a414d80aa551200fb48b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stamina: 100
+  forceIncrease: 5
+  staminaDrain: 5
 --- !u!1 &5751057954573028448
 GameObject:
   m_ObjectHideFlags: 0
@@ -1919,6 +1924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8618fa91d22bf46029405ecd3d73dc9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stamina: 100
   airMass: 0.441
 --- !u!1 &8565486870000114256
 GameObject:
@@ -2032,8 +2038,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39b2d06075dda4c5faed825b51727ddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gp: {fileID: 0}
-  _sw: {fileID: 0}
+  stamina: 100
+  _gp: {fileID: 6698313365989930843}
+  _sw: {fileID: 3676595274151617829}
+  staminaDrain: 0.1
 --- !u!114 &6698313365989930843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2094,10 +2102,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   lr: {fileID: 397744161984693961}
+  swingDrag: 0.1
   maxDistance: 25
+  extantion: 5
   Swingin: 0
   hThrustForce: 0
-  fThrustForce: 0
+  fThrustForce: 5
   predictionSphereCasRadius: 3
   predictionPoint: {fileID: 557924025420903389}
 --- !u!1 &8862028222614462506
@@ -2429,6 +2439,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57bdb1d3ceb60419180853048decfe6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stamina: 100
+  wallJumpFactor: 2
 --- !u!1 &9056177072422138739
 GameObject:
   m_ObjectHideFlags: 0
