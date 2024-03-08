@@ -37,7 +37,6 @@ public class LizardMove : AnimalMove
                 stamina -= 0.1f;
             }
             
-            print(stamina);
             pm.GetRigidbody().useGravity = false;
             UpdateWallRotation(hit.normal);
             pm.GetRigidbody().AddForce(
