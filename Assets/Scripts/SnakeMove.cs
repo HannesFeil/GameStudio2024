@@ -77,6 +77,7 @@ public class SnakeMove : AnimalMove
 
     private void OnTriggerEnter(Collider other)
     {
+        if(!_sw.Swingin) pm.DragReset();
         if (_enableMovementOnNextTouch)
         {
             turnOf();

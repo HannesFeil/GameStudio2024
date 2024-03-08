@@ -96,7 +96,6 @@ public class Swing : MonoBehaviour
 
     public void StopSwing()
     {
-        _pm.DragReset();
         _currentGrapplePosition = tip.position;
         Swingin = false;
         lr.positionCount = 0;
