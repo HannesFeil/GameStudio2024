@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum AnimalTyps 
+public enum AnimalType 
 {
    SNAKE = 0,
    MOUSE = 1,

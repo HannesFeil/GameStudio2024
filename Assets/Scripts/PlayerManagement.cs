@@ -11,7 +11,7 @@ public class PlayerManagement : MonoBehaviour
     private GameObject[] animals; // Die 4 Tiere
 
     [SerializeField] 
-    private AnimalTyps animalTyps = AnimalTyps.SNAKE; // Der Typ des Tieres, aus dem enum 
+    private AnimalType activeAnimal = AnimalType.SNAKE; // Der Typ des Tieres, aus dem enum 
 
     [Header("Camera")]
     [SerializeField]
@@ -95,11 +95,13 @@ public class PlayerManagement : MonoBehaviour
         _animalMoves = new AnimalMove[4];
         for (int i = 0; i < animals.Length; i++) 
         {
-            animals[i].SetActive((int) animalTyps == i);
+            animals[i].SetActive((int) activeAnimal == i);
             AnimalMove am = animals[i].GetComponent<AnimalMove>();
             _animalMoves[i] = am;
             _animalMoves[i].SetPlayerManagement(this);
         }
+
+        GameManagement.GetInstance().GetOverlay().UpdateAnimalDisplay(activeAnimal);
     }
 
     // Called every game tick
@@ -140,7 +142,7 @@ public class PlayerManagement : MonoBehaviour
         Vector2 inputVec2 = new Vector2(inputVec3.x,inputVec3.z);
 
         for (int i = 0; i < 4; i++) {
-            if (i != (int) animalTyps || infiniteStamina) {
+            if (i != (int) activeAnimal || infiniteStamina) {
                 _animalMoves[i].RegainStamina();
                 if (infiniteStamina) {
                     _animalMoves[i].stamina = 100;
@@ -149,7 +151,7 @@ public class PlayerManagement : MonoBehaviour
         }
         
         // Ruft die Bewegungsmethoden der Tiere (extern) auf
-        _animalMoves[(int) animalTyps].Move(inputVec2,specialActive);
+        _animalMoves[(int) activeAnimal].Move(inputVec2,specialActive);
     }
 
     /// <summary>
@@ -161,7 +163,7 @@ public class PlayerManagement : MonoBehaviour
         
         if (swap != 0) {
             if (!_swapped) {
-                int current = (int) animalTyps;
+                int current = (int) activeAnimal;
                 int next = (current + (int) swap + 4) % animals.Length;
         
                 animals[current].SetActive(false);
@@ -169,8 +171,10 @@ public class PlayerManagement : MonoBehaviour
                 animals[next].SetActive(true);
                 _animalMoves[next].OnSwappedTo();
 
-                animalTyps = (AnimalTyps) next;
+                activeAnimal = (AnimalType) next;
                 _swapped = true;
+
+                GameManagement.GetInstance().GetOverlay().UpdateAnimalDisplay(activeAnimal);
             }
         } else {
             _swapped = false;
