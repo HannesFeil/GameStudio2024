@@ -30,10 +30,6 @@ public class LizardMove : AnimalMove
         }
         
         if (onWall) {
-            if (!pm.infiniteStamina) {
-                stamina -= 0.1f;
-            }
-            
             pm.GetRigidbody().useGravity = false;
             UpdateWallRotation(hit.normal);
             pm.GetRigidbody().AddForce(

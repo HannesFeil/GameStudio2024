@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class AnimalMove : MonoBehaviour
 {
     protected PlayerManagement pm;
-    protected float stamina = 100;
+    public float stamina = 100;
     protected float maxStamina = 100;
 
     /// <summary>

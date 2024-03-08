@@ -138,6 +138,9 @@ public class PlayerManagement : MonoBehaviour
         for (int i = 0; i < 4; i++) {
             if (i != (int) animalTyps) {
                 _animalMoves[i].RegainStamina();
+                if (infiniteStamina) {
+                    _animalMoves[i].stamina = 100;
+                }
             }
         }
         
