@@ -13,8 +13,9 @@ public class Swing : MonoBehaviour
     public LayerMask whatToGrapple;
     public LineRenderer lr;
     
-    [SerializeField] float swingDrag = 0.1f;
-    [SerializeField] float maxDistance = 25f;
+    [SerializeField] private float swingDrag = 0.1f;
+    [SerializeField] private float maxDistance = 25f;
+    [SerializeField] private float extantion = 5f;
     private Vector3 _currentGrapplePosition;
     private Vector3 _swingPoint;
     private SpringJoint _joint;
@@ -105,11 +106,6 @@ public class Swing : MonoBehaviour
     public void OdmGearMovement()
     {
         float h = Input.GetAxis("Horizontal");
-        Vector3 forces = new Vector3(h, 0, 0).normalized;
-        forces = Quaternion.Euler(0, _pm.GetCamTransform().rotation.y, 0) * forces;
-
-        _pm.GetRigidbody().AddForce(forces * hThrustForce);
-
         if (Input.GetButton("Jump"))
         {
             Vector3 directionToPoint = _swingPoint - _pm.GetTransform().position;
@@ -118,6 +114,13 @@ public class Swing : MonoBehaviour
             float distanceFromPoint = Vector3.Distance(_pm.GetTransform().position, _swingPoint);
             _joint.maxDistance = distanceFromPoint * 0.8f;
             _joint.minDistance = distanceFromPoint * 0.25f;
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            float distanceFromPoint = Vector3.Distance(_pm.GetTransform().position, _swingPoint);
+            _joint.maxDistance = distanceFromPoint * 0.8f + extantion;
+            _joint.minDistance = distanceFromPoint * 0.25f + extantion;
         }
     }
 

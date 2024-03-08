@@ -5,6 +5,7 @@ public class SnakeMove : AnimalMove
 {
     [SerializeField] private Grappling _gp;
     [SerializeField] private Swing _sw;
+    [SerializeField] private float staminaDrain = 0.1f;
 
     private bool _enableMovementOnNextTouch;
 
@@ -43,10 +44,11 @@ public class SnakeMove : AnimalMove
         
         pm.GetRigidbody().AddForce(dir.x * pm.MovementForce, 0, dir.y * pm.MovementForce);
 
-        if (specialActive)
+        if (specialActive && stamina > 0)
         {
             //gp.StartGrapple();
             _sw.StartSwing();
+            stamina -= staminaDrain;
         } else 
         { 
             _sw.StopSwing();
