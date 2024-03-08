@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class PlayerManagement : MonoBehaviour
 {
+    [Header("Debugging")]
+    public bool infiniteStamina;
+
     [Header("Animals")]
     [SerializeField] 
     private GameObject[] animals; // Die 4 Tiere

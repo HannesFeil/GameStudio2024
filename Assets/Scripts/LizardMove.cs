@@ -3,9 +3,6 @@ using UnityEngine;
 public class LizardMove : AnimalMove
 {
     [SerializeField]
-    bool infiniteStamina = false;
-    
-    [SerializeField]
     float wallJumpFactor = 2f;
 
     private float _wallJumpTimer = 0;
@@ -33,7 +30,7 @@ public class LizardMove : AnimalMove
         }
         
         if (onWall) {
-            if (!infiniteStamina) {
+            if (!pm.infiniteStamina) {
                 stamina -= 0.1f;
             }
             
