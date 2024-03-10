@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class BirdMove : AnimalMove
 {
-    private float _groundMass = 1f;
-    private int flyTimer;
-    
-    [SerializeField]
-    [Range(0,1)]
-    private float airMass = 0.5f;
+    // private float _groundMass = 1f;
+    // //private int flyTimer;
+    //
+    // [SerializeField]
+    // [Range(0,1)]
+    // private float airMass = 0.7f;
 
     private Rigidbody rb;
     public override void Setup()
@@ -39,14 +39,13 @@ public class BirdMove : AnimalMove
         {
             Vector3 velo = rb.velocity;
             CheckJump();
-            //pm.GetRigidbody().mass = airMass; //- (flyTimer * 0.1f);
-            rb.velocity = new Vector3(velo.x, Mathf.Max(velo.y, -0.1f), velo.z);
+            rb.velocity = new Vector3(velo.x, Mathf.Max(velo.y, -0.3f), velo.z); //richtige Geschwindigkeit? maybe nochmal ändern
         }
         
-        if (pm.IsGrounded())
-        {
-            pm.GetRigidbody().mass = _groundMass;
-        }
+        // if (pm.IsGrounded())
+        // {
+        //     pm.GetRigidbody().mass = _groundMass;
+        // }
         pm.GetRigidbody().AddForce(dir.x * pm.MovementForce, 0, dir.y * pm.MovementForce);
         pm.CheckSwap();
     }
@@ -55,7 +54,7 @@ public class BirdMove : AnimalMove
     /// Get"s called after this animal is swapped away
     /// </summary>
     public override void OnSwappedFrom() {
-        pm.GetRigidbody().mass = _groundMass;
+        //pm.GetRigidbody().mass = _groundMass;
     }
 
     /// <summary>
