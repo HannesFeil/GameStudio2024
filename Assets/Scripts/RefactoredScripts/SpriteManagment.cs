@@ -7,11 +7,10 @@ public class SpriteManagment : MonoBehaviour
 {
     [Header("References")]
     [SerializeField]
+    private GameManagementRefactored gameManagement;
+
+    [SerializeField]
     private Transform orientation;
-    [SerializeField]
-    private PlayerMovement _pm;
-    [SerializeField]
-    private ThirdPersonCam _th;
 
     [SerializeField]
     private float rotationSpeed = 7f;
@@ -21,15 +20,26 @@ public class SpriteManagment : MonoBehaviour
 
     private AnimalType _lastAnimal;
 
+    private void Start()
+    {
+        AnimalType currentAnimal = gameManagement.PlayerMovement.GetAnimalTyp();
+        _lastAnimal = currentAnimal;
+        for (int i = 0; i < animalSprites.Length; i++)
+        {
+            animalSprites[i].SetActive((int) currentAnimal == i);
+        }
+    }
+
     private void Update()
     {
         RotatePlayer();
         SetSprite();
     }
 
+    
     private void RotatePlayer()
     {
-        if (_th.GetcameraStyle() == CameraStyle.FREECAM || _th.GetcameraStyle() == CameraStyle.TOPDOWN)
+        if (gameManagement.ThirdPersonCam.GetcameraStyle() == CameraStyle.FREECAM || gameManagement.ThirdPersonCam.GetcameraStyle() == CameraStyle.TOPDOWN)
         {
             // rotate player object
             float horizontalInput = Input.GetAxis("Horizontal");
@@ -41,7 +51,7 @@ public class SpriteManagment : MonoBehaviour
                 transform.forward = Vector3.Slerp(transform.forward, inputDir.normalized, rotationSpeed * Time.deltaTime);
             }
         }
-        else if (_th.GetcameraStyle() == CameraStyle.FOCUSCAM)
+        else if (gameManagement.ThirdPersonCam.GetcameraStyle() == CameraStyle.FOCUSCAM)
         {
             transform.forward = orientation.forward;
         }
@@ -49,7 +59,7 @@ public class SpriteManagment : MonoBehaviour
 
     private void SetSprite()
     {
-        AnimalType currentAnimal = _pm.GetAnimalTyp();
+        AnimalType currentAnimal = gameManagement.PlayerMovement.GetAnimalTyp();
         if (_lastAnimal == currentAnimal) return;
 
         animalSprites[(int) _lastAnimal].SetActive(false);

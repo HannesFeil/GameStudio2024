@@ -15,6 +15,9 @@ public class LizzardClimbing : MonoBehaviour
     [SerializeField]
     private AnimalType aniaml = AnimalType.LIZARD;
 
+    private Rigidbody _rb;
+    private PlayerMovement _pm;
+
     [Header("Climbing")]
     [SerializeField]
     private float climbSpeed = 10;
@@ -26,6 +29,10 @@ public class LizzardClimbing : MonoBehaviour
     private float climbJumpUpForce = 3;
     [SerializeField]
     private float climbJumpBackForce = 7;
+    [SerializeField]
+    private float climbJumpCD = 0.5f;
+    private float _climbJumpCDTimer;
+
 
     [Header("Detection")]
     [SerializeField]
@@ -39,9 +46,6 @@ public class LizzardClimbing : MonoBehaviour
 
     private RaycastHit _frontWallHit;
     private bool _wallFront;
-
-    private Rigidbody _rb;
-    private PlayerMovement _pm;
 
     [Header("Keybinds")]
     [SerializeField]
@@ -79,6 +83,8 @@ public class LizzardClimbing : MonoBehaviour
         MyInput();
         WallDetection();
         StateMachine();
+
+        _climbJumpCDTimer = Mathf.Max(_climbJumpCDTimer - Time.deltaTime, 0);
     }
 
     private void FixedUpdate()
@@ -146,13 +152,22 @@ public class LizzardClimbing : MonoBehaviour
 
     private void ClimbingMovment()
     {
-        Vector3 dirNormal = Quaternion.Euler(new Vector3(0f,-90f,0f)) * _frontWallHit.normal;
-        _moveDirection = Vector3.up * _verticalInput + dirNormal.normalized * _horizontalInput;
-        _rb.AddForce(_moveDirection.normalized * climbSpeed * 10, ForceMode.Force);
+        Vector3 dirHorizontal = Quaternion.Euler(new Vector3(0f,-90f,0f)) * new Vector3(_frontWallHit.normal.x,0f, _frontWallHit.normal.z);
+        _moveDirection = Vector3.up * _verticalInput + dirHorizontal * _horizontalInput;
+
+        _rb.AddForce(AngleMoveDirection() * climbSpeed * 10, ForceMode.Force);
+    }
+
+    private Vector3 AngleMoveDirection()
+    {
+        return Vector3.ProjectOnPlane(_moveDirection, _frontWallHit.normal).normalized;
     }
 
     private void ClimbJump()
     {
+        if (_climbJumpCDTimer > 0) return;
+
+        _climbJumpCDTimer = climbJumpCD;
         StopClimbing();
         Vector3 forceToApply = transform.up * climbJumpUpForce + _frontWallHit.normal * climbJumpBackForce;
 

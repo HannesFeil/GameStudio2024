@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class ThirdPersonCam : MonoBehaviour
 {
+
     [Header("References")]
+    [SerializeField]
+    private GameManagementRefactored gameManagement;
     [SerializeField]
     private Transform orientation;
     [SerializeField]
@@ -21,7 +24,6 @@ public class ThirdPersonCam : MonoBehaviour
     private GameObject topdownCam;
 
     private CameraStyle _cameraStyle = CameraStyle.FREECAM;
-
 
     public enum CameraStyle
     {

@@ -9,6 +9,19 @@ using UnityEngine;
 [RequireComponent(typeof (BirdGlide))]
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField]
+    private GameManagementRefactored gameManagement;
+    [SerializeField]
+    private Transform orientation;
+
+    private Rigidbody _rb;
+    private SnakeSwing _snakeSwing;
+    private MouseDash _mouseDash;
+    private LizzardClimbing _lizzardClimbing;
+    private BirdGlide _birdGlide;
+
+
     [Header("Movement")]
     [SerializeField]
     private float walkSpeed = 7;
@@ -25,6 +38,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float grapplingSpeedChangeFactor = 5f;
     [SerializeField]
+    private float glideSpeed = 20f;
+    [SerializeField]
+    private float glideDamp = 1f;
+    [SerializeField]
+    private float glideSpeedChangeFactor = 5f;
+    [SerializeField]
     private float groundDrag = 5;
     [SerializeField]
     private float climbingDrag = 5;
@@ -35,6 +54,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float airMultiplier = 0.2f;
 
+    private float _maxMoveSpeed;
+
+    [Header("Stamina")]
+    [SerializeField]
+    private float staminaRecoveryRate = 10f;
+    [SerializeField]
+    private bool debugStamina = false;
+
+    private float _maxStamina = 100;
+    private float[] _stamina;
 
     [Header("Keybinds")]
     [SerializeField]
@@ -50,21 +79,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private LayerMask whatIsGround;
     [SerializeField]
-    private float groundTolerance = 0.3f;
+    private float groundTolerance = 0.2f;
 
     [Header("Slope Handling")]
     [SerializeField]
     private float maxSlopeAngle = 40f;
-    
-    
-    [SerializeField]
-    private Transform orientation;
 
     private RaycastHit _slopeHit;
     private bool _exitingSlope;
-    private float _maxMoveSpeed;
 
-    private Rigidbody _rb;
     
     [Header("Input")]
     private float _horizontalInput;
@@ -75,19 +98,11 @@ public class PlayerMovement : MonoBehaviour
     private float _lastSwitch;
     private Vector3 _moveDirection;
 
-    private AnimalType _animalType = AnimalType.SNAKE;
-    private SnakeSwing _snakeSwing;
-    private MouseDash _mouseDash;
-    private LizzardClimbing _lizzardClimbing;
-    private BirdGlide _birdGlide;
-    [SerializeField]
-    private float staminaRecoveryRate = 10f;
-    [SerializeField]
-    private bool debugStamina = false;
-    private float _maxStamina = 100;
-    private float[] _stamina;
 
+    [Header("States")]
+    private AnimalType _animalType = AnimalType.SNAKE;
     private MovementStat _moveState;
+
     public enum MovementStat
     {
         walking,
@@ -95,15 +110,17 @@ public class PlayerMovement : MonoBehaviour
         dashing,
         swinging,
         grappling,
+        gliding,
         air
     }
 
     private bool _readyToJump = true;
-    private bool _climbing;
-    private bool _dashing;
-    private bool _swinging;
-    private bool _grounded;
-    private bool _grappling;
+    private bool _isClimbing;
+    private bool _isDashing;
+    private bool _isSwinging;
+    private bool _isGrounded;
+    private bool _isGrappling;
+    private bool _isGliding;
 
     private float _desiredMoveSpeed;
     private float _lastDesiredMoveSpeed;
@@ -161,7 +178,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void groundCheck() 
     {
-        _grounded = Physics.Raycast(transform.position,Vector3.down,playerHeight * 0.5f + groundTolerance, whatIsGround); 
+        _isGrounded = Physics.Raycast(transform.position,Vector3.down,playerHeight * 0.5f + groundTolerance, whatIsGround); 
     }
 
     private bool OnSlope()
@@ -181,20 +198,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void DragOn()
     {
-        if(_dashing)
-        {
-            _rb.drag = 0f;
-
-        }
-        else if (_grappling)
+        if(_isDashing)
         {
             _rb.drag = 0f;
         }
-        else if (_grounded)
+        else if (_isGrappling)
+        {
+            _rb.drag = 0f;
+        }
+        else if (_isGrounded)
         {
             _rb.drag = groundDrag;
         }
-        else if (_climbing)
+        else if (_isClimbing)
         {
             _rb.drag = climbingDrag;
         } 
@@ -206,41 +222,48 @@ public class PlayerMovement : MonoBehaviour
 
     private void StateHandler()
     {
-        if (_dashing)
+        if (_isDashing)
         {
             _moveState = MovementStat.dashing;
             _desiredMoveSpeed = dashSpeed;
             _speedChangeFactor = dashSpeedChangeFactor;
         } 
-        else if (_grappling)
+        else if (_isGliding)
+        {
+            _moveState = MovementStat.gliding;
+            _desiredMoveSpeed = glideSpeed;
+            _speedChangeFactor = glideSpeedChangeFactor;
+        }
+        else if (_isGrappling)
         {
             _moveState = MovementStat.grappling;
             _speedChangeFactor = grapplingSpeedChangeFactor;
         }
-        else if (_swinging)
+        else if (_isSwinging)
         {
             _moveState = MovementStat.swinging;
             _desiredMoveSpeed = swingSpeed;
             _speedChangeFactor = swingSpeedChangeFactor;
         }
-        else if (_climbing)
+        else if (_isClimbing)
         {
             _moveState = MovementStat.climbing;
             _desiredMoveSpeed = climbingSpeed;
         } 
-        else if (_grounded)
+        else if (_isGrounded)
         {
             _moveState = MovementStat.walking;
             _desiredMoveSpeed = walkSpeed;
         } 
-        else if (!_grounded)
+        else if (!_isGrounded)
         {
             _moveState = MovementStat.air;
             _desiredMoveSpeed = walkSpeed;
         }
 
         bool desiredMoveSpeedHasChanged = _desiredMoveSpeed != _lastDesiredMoveSpeed;
-        if (_lastState == MovementStat.dashing || _lastState == MovementStat.swinging || _lastState == MovementStat.grappling)
+        if (_lastState == MovementStat.dashing || _lastState == MovementStat.swinging || _lastState == MovementStat.grappling
+            || _lastState == MovementStat.gliding)
         {
             _keepMomentum = true;
         }
@@ -353,14 +376,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        if (_climbing) return;
-        if (_dashing) return;
-        if (_swinging) return;
-        if(_grappling) return;
+        if (_isClimbing) return;
+        if (_isDashing) return;
+        if (_isSwinging) return;
+        if(_isGrappling) return;
+        if (_isGliding) return;
 
         _moveDirection = orientation.forward * _verticalInput + orientation.right * _horizontalInput;
 
-        if (_jumpInput && _readyToJump && _grounded)
+        if (_jumpInput && _readyToJump && _isGrounded)
         {
             _readyToJump = false;
 
@@ -376,10 +400,10 @@ public class PlayerMovement : MonoBehaviour
             {
                 _rb.AddForce(Vector3.down * 80f, ForceMode.Force);
             }
-        } else if (_grounded )
+        } else if (_isGrounded )
         {
             _rb.AddForce(_moveDirection.normalized * walkSpeed * 10f, ForceMode.Force);
-        } else if(!_grounded)
+        } else if(!_isGrounded)
         {
             _rb.AddForce(_moveDirection.normalized * walkSpeed * 10f * airMultiplier, ForceMode.Force);
         }
@@ -390,8 +414,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        _exitingSlope = true;
-
+        if(OnSlope())
+        {
+            _exitingSlope = true;
+        }
         _rb.velocity = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
 
         _rb.AddForce(transform.up * jumpForce,ForceMode.Impulse);
@@ -408,15 +434,33 @@ public class PlayerMovement : MonoBehaviour
 
     private void SpeedControl()
     {
-        if(_grappling) return;
+        if(_isGrappling) return;
 
-        if(OnSlope() && !_exitingSlope)
+        if(_isClimbing)
         {
-            if(_rb.velocity.magnitude > _maxMoveSpeed)
+            if (_rb.velocity.magnitude > _maxMoveSpeed)
             {
                 _rb.velocity = _rb.velocity.normalized * _maxMoveSpeed;
             }
-        } else if(_climbing)
+        }
+        else if (_isGliding)
+        {
+            Vector3 flatVel = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
+            Vector3 limiteVel = _rb.velocity;
+            if (flatVel.magnitude > _maxMoveSpeed)
+            {
+                limiteVel = flatVel.normalized * _maxMoveSpeed;
+            }
+            _rb.velocity = new Vector3(limiteVel.x, Mathf.Max(-glideDamp, _rb.velocity.y), limiteVel.z);
+        }
+        else if (_isDashing)
+        {
+            if (_rb.velocity.magnitude > _maxMoveSpeed)
+            {
+                _rb.velocity = _rb.velocity.normalized * _maxMoveSpeed;
+            }
+        }
+        else if (OnSlope() && !_exitingSlope && _isGrounded)
         {
             if (_rb.velocity.magnitude > _maxMoveSpeed)
             {
@@ -448,42 +492,57 @@ public class PlayerMovement : MonoBehaviour
 
     public void SetClimbing(bool climbing)
     {
-        _climbing = climbing;
+        _isClimbing = climbing;
     }
 
     public bool IsClimbing()
     {
-        return _climbing;
+        return _isClimbing;
     }
 
     public void SetDashing(bool dashing)
     {
-        _dashing = dashing;
+        _isDashing = dashing;
     }
 
     public bool IsDashing()
     {
-        return _dashing;
+        return _isDashing;
     }
 
     public void SetSwinging(bool swinging)
     {
-        _swinging = swinging;
+        _isSwinging = swinging;
     }
 
     public bool IsSwinging()
     {
-        return _swinging;
+        return _isSwinging;
     }
 
     public void SetGrappling(bool grappling)
     {
-        _grappling = grappling;
+        _isGrappling = grappling;
     }
 
     public bool IsGrappling()
     {
-        return _grappling;
+        return _isGrappling;
+    }
+
+    public void SetGliding(bool gliding)
+    {
+        _isGliding = gliding;
+    }
+
+    public bool IsGliding()
+    {
+        return _isGliding;
+    }
+    
+    public bool IsGroundet()
+    {
+        return _isGrounded;
     }
 
     public float GetStamina(int index)

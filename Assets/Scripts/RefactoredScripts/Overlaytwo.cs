@@ -5,15 +5,13 @@ using UnityEngine.UI;
 
 public class Overlaytwo : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField]
+    private GameManagementRefactored gameManagement;
     [SerializeField]
     private TMP_Text speedometer;
     [SerializeField]
     private TMP_Text moveState;
-    [SerializeField]
-    private PlayerMovement pm;
-
-    private AnimalType _lastAnimal;
-
     [SerializeField]
     private Transform[] displayAnimals = new Transform[4];
     [SerializeField]
@@ -23,30 +21,40 @@ public class Overlaytwo : MonoBehaviour
     [SerializeField]
     private Image[] staminaImage = new Image[3];
     [SerializeField]
+
+    [Header("Stamina")]
     private Color[] staminaColor = {new Color(0xFF,0x00,0x00), new Color(0xFF,0xF2,0x05), new Color(0x7C,0xFF,0x01)};
     [SerializeField]
     private float[] staminaThreshold = {0.25f,0.5f,1f};
+    [SerializeField]
+    private float interpellationSpeed = 2f;
+    [SerializeField]
+    private float interpellationSwitchSpeed = 10f;
 
+
+    private bool _useSwitchSpeed;
     private float _centerStamnia = 1;
+    private AnimalType _lastAnimal;
 
     // Start is called before the first frame update
     private void Start()
     {
-        _lastAnimal = (AnimalType) (((int) pm.GetAnimalTyp() + 1) % 4);
+        _lastAnimal = (AnimalType) (((int) gameManagement.PlayerMovement.GetAnimalTyp() + 1) % 4);
         AnimalsDisplay();
+        
     }
     // Update is called once per frame
     void Update()
     {
-        speedometer.text = "Speed :" + pm.getVelocity();
-        moveState.text = pm.getMoveState().ToString();
+        speedometer.text = "Speed :" + gameManagement.PlayerMovement.getVelocity();
+        moveState.text = gameManagement.PlayerMovement.getMoveState().ToString();
         AnimalsDisplay();
         StaminaDisplay();
     }
 
     private void AnimalsDisplay()
     {
-        int currentAnimal = (int) pm.GetAnimalTyp();
+        int currentAnimal = (int) gameManagement.PlayerMovement.GetAnimalTyp();
         if ((int) _lastAnimal == currentAnimal) return;
 
         _lastAnimal = (AnimalType) currentAnimal;
@@ -69,7 +77,7 @@ public class Overlaytwo : MonoBehaviour
         displayAnimals[right].gameObject.SetActive(true);
         displayAnimals[box].gameObject.SetActive(false);
 
-        _centerStamnia = Mathf.Lerp(_centerStamnia, pm.GetStamina(currentAnimal) / 100, 10 * Time.deltaTime);
+        _useSwitchSpeed = true;
 
     }
 
@@ -77,33 +85,40 @@ public class Overlaytwo : MonoBehaviour
 
     private void StaminaDisplay()
     {
-        int currentAnimal = (int)pm.GetAnimalTyp();
+        int currentAnimal = (int)gameManagement.PlayerMovement.GetAnimalTyp();
         int left = (currentAnimal + 3) % 4;
         int right = (currentAnimal + 1) % 4;
 
-        float leftStamina = pm.GetStamina(left) / 100;
+        float leftStamina = gameManagement.PlayerMovement.GetStamina(left) / 100;
         stamina[0].value = leftStamina;
-        staminaImage[0].color = floatToColor(leftStamina);
+        staminaImage[0].color = staminaColor[floatToIndex(leftStamina)];
 
 
-        float rightStamina = pm.GetStamina(right) / 100;
+        float rightStamina = gameManagement.PlayerMovement.GetStamina(right) / 100;
         stamina[2].value = rightStamina;
-        staminaImage[2].color = floatToColor(rightStamina);
+        staminaImage[2].color = staminaColor[floatToIndex(rightStamina)];
 
-        _centerStamnia = Mathf.Lerp(_centerStamnia, pm.GetStamina(currentAnimal) / 100,2 * Time.deltaTime);
-        staminaImage[1].color = floatToColor(_centerStamnia);
+        float desiredStamina = gameManagement.PlayerMovement.GetStamina(currentAnimal) / 100;
+        _centerStamnia = Mathf.Lerp(_centerStamnia, desiredStamina, 
+            (_useSwitchSpeed ? interpellationSwitchSpeed : interpellationSpeed) * Time.deltaTime);
+        if(_useSwitchSpeed && Mathf.Abs(desiredStamina - _centerStamnia) < 0.01f)
+        {
+            _useSwitchSpeed = false;
+        }
+
+        staminaImage[1].color = staminaColor[floatToIndex(_centerStamnia)];
         stamina[1].value = _centerStamnia;
     }
 
-    private Color floatToColor(float s)
+    private int floatToIndex(float s)
     {
         for (int i = 0; i < staminaThreshold.Length; i++)
         {
             if (s <= staminaThreshold[i])
             {
-                return staminaColor[i];
+                return i;
             }
         }
-        return new Color();
+        return -1;
     }
 }
