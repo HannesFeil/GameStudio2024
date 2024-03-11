@@ -34,11 +34,14 @@ public class SpriteManagment : MonoBehaviour
     {
         RotatePlayer();
         SetSprite();
+        SetAnimation();
+        RotateLizzard();
     }
 
     
     private void RotatePlayer()
     {
+        if(gameManagement.PlayerMovement.getMoveState() == PlayerMovement.MovementStat.climbing) return;
         if (gameManagement.ThirdPersonCam.GetcameraStyle() == CameraStyle.Free || gameManagement.ThirdPersonCam.GetcameraStyle() == CameraStyle.Topdown)
         {
             // rotate player object
@@ -65,5 +68,60 @@ public class SpriteManagment : MonoBehaviour
         animalSprites[(int) _lastAnimal].SetActive(false);
         animalSprites[(int) currentAnimal].SetActive(true);
         _lastAnimal = currentAnimal;
+    }
+
+    private void SetAnimation()
+    {
+        PlayerMovement.MovementStat movementStat = gameManagement.PlayerMovement.getMoveState();
+        AnimalType currentAnimal = gameManagement.PlayerMovement.GetAnimalTyp();
+        Animator animator = animalSprites[(int)currentAnimal].GetComponent<Animator>();
+
+        switch (movementStat)
+        {
+            case PlayerMovement.MovementStat.air: 
+                //Bitte States differenzieren zwischen: Jump, Fall etc.
+                animator.Play("Swim");
+                animator.Play("Eyes_Shrink");
+                //animator.Play("");
+                break;
+            case PlayerMovement.MovementStat.climbing: 
+                //Wenn die Eidechse klettert, ?fliegt/schwimmt/hüpft? sie
+                
+                //animator.Play("Fly");
+                animator.Play("Swim");
+                //animator.Play("Bounce");
+                
+                break;
+            case PlayerMovement.MovementStat.dashing: 
+                //Wenn die Maus ihren Dash macht, macht sie Liegestütze und klatscht
+                animator.Play("Bounce");
+                animator.Play("Eyes_Blink");
+                break;
+            case PlayerMovement.MovementStat.gliding: 
+                //Wenn der Vogel von etwas herunter gleitet, fliegt er
+                animator.Play("Fly");
+                break;
+            case PlayerMovement.MovementStat.swinging: 
+                //Wenn die Schlange am Enterhaken schwingt, dreht sie sich
+                animator.Play("Spin");
+                break;
+            case PlayerMovement.MovementStat.grappling:
+                //Wenn die Schlange den Enterhaken schwingt, macht sie eine Attacke
+                animator.Play("Attack");
+                break;
+            case PlayerMovement.MovementStat.walking:
+                //Wenn die Tiere laufen, dann laufen sie
+                animator.Play("Walk");
+                animator.Play("Eyes_Excited");
+                break;
+        }
+        //animator.Play("Spin");
+    }
+
+    private void RotateLizzard()
+    {
+        PlayerMovement.MovementStat movementStat = gameManagement.PlayerMovement.getMoveState();
+        if (movementStat != PlayerMovement.MovementStat.climbing) return;
+        transform.forward = Vector3.up;
     }
 }
