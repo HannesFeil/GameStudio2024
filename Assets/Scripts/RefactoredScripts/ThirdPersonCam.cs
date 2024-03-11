@@ -1,4 +1,7 @@
 using UnityEngine;
+using System.Collections;
+using System;
+using UnityEngine.Video;
 
 public class ThirdPersonCam : MonoBehaviour
 {
@@ -35,14 +38,9 @@ public class ThirdPersonCam : MonoBehaviour
 
     private void Start()
     {
-        Invoke(nameof(Lock),01f);
-        SwitchCameraStyle(_cameraStyle);
-    }
-
-    private void Lock()
-    {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        SwitchCameraStyle(_cameraStyle);
     }
 
     private void Update()
@@ -73,6 +71,9 @@ public class ThirdPersonCam : MonoBehaviour
 
     private void SwitchCameraStyle(CameraStyle style)
     {
+        Transform freeTransform = freeCam.transform;
+        Transform focusedTransform = focusCam.transform;
+        
         freeCam.SetActive(false);
         focusCam.SetActive(false);
         topdownCam.SetActive(false);
