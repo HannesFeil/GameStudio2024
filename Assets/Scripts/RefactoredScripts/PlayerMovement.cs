@@ -26,7 +26,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float walkSpeed = 7;
     [SerializeField]
+    private float walkSpeedChangeFactor = 50f;
+    [SerializeField]
+    private float airSpeed = 10;
+    [SerializeField]
+    private float airSpeedChangeFactor = 5f;
+    [SerializeField]
     private float climbingSpeed = 10;
+    [SerializeField]
+    private float climbingSpeedChangeFactor = 5f;
     [SerializeField]
     private float dashSpeed = 20;
     [SerializeField]
@@ -125,7 +133,6 @@ public class PlayerMovement : MonoBehaviour
     private float _desiredMoveSpeed;
     private float _lastDesiredMoveSpeed;
     private MovementStat _lastState;
-    private bool _keepMomentum;
     private float _speedChangeFactor = 1f;
 
     private void Start()
@@ -254,32 +261,20 @@ public class PlayerMovement : MonoBehaviour
         {
             _moveState = MovementStat.walking;
             _desiredMoveSpeed = walkSpeed;
+            _speedChangeFactor = walkSpeedChangeFactor;
         } 
         else if (!_isGrounded)
         {
             _moveState = MovementStat.air;
-            _desiredMoveSpeed = walkSpeed;
+            _desiredMoveSpeed = airSpeed;
+            _speedChangeFactor = airSpeedChangeFactor;
         }
 
         bool desiredMoveSpeedHasChanged = _desiredMoveSpeed != _lastDesiredMoveSpeed;
-        if (_lastState == MovementStat.dashing || _lastState == MovementStat.swinging || _lastState == MovementStat.grappling
-            || _lastState == MovementStat.gliding)
-        {
-            _keepMomentum = true;
-        }
-
         if(desiredMoveSpeedHasChanged)
         {
-            if (_keepMomentum)
-            {
-                StopAllCoroutines();
-                StartCoroutine(SmoothlyLerpMoveSpeed());
-            } 
-            else
-            {
-                StopAllCoroutines();
-                _maxMoveSpeed = _desiredMoveSpeed;
-            }
+            StopAllCoroutines();
+            StartCoroutine(SmoothlyLerpMoveSpeed());
         }
 
         _lastDesiredMoveSpeed = _desiredMoveSpeed;
@@ -356,7 +351,6 @@ public class PlayerMovement : MonoBehaviour
 
         _maxMoveSpeed = _desiredMoveSpeed;
         _speedChangeFactor = 1f;
-        _keepMomentum = false;
     }
 
     private void RecoverStamina()
