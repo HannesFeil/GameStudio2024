@@ -42,17 +42,10 @@ public class ThirdPersonCam : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
+        if (_cameraStyle != CameraStyle.FREECAM && !Input.GetKey(KeyCode.Mouse1)) {
             SwitchCameraStyle(CameraStyle.FREECAM);
-        } 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
+        } else if (_cameraStyle != CameraStyle.FOCUSCAM && Input.GetKey(KeyCode.Mouse1)) {
             SwitchCameraStyle(CameraStyle.FOCUSCAM);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            SwitchCameraStyle(CameraStyle.TOPDOWN);
         }
 
         if (_cameraStyle == CameraStyle.FREECAM || _cameraStyle == CameraStyle.TOPDOWN)
