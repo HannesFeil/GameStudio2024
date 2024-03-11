@@ -23,13 +23,13 @@ public class ThirdPersonCam : MonoBehaviour
     [SerializeField]
     private GameObject topdownCam;
 
-    private CameraStyle _cameraStyle = CameraStyle.FREECAM;
+    private CameraStyle _cameraStyle = CameraStyle.Free;
 
     public enum CameraStyle
     {
-        FREECAM,
-        FOCUSCAM,
-        TOPDOWN
+        Free,
+        Focus,
+        Topdown
     }
 
 
@@ -48,14 +48,19 @@ public class ThirdPersonCam : MonoBehaviour
             SwitchCameraStyle(CameraStyle.FOCUSCAM);
         }
 
-        if (_cameraStyle == CameraStyle.FREECAM || _cameraStyle == CameraStyle.TOPDOWN)
+        if (_cameraStyle == CameraStyle.Free || _cameraStyle == CameraStyle.Topdown)
         {
             // rotate orientation
-            Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
+            var position = player.position;
+            var position1 = transform.position;
+            Vector3 viewDir = position - new Vector3(position1.x, position.y, position1.z);
             orientation.forward = viewDir;
-        } else if(_cameraStyle == CameraStyle.FOCUSCAM)
+        } else if(_cameraStyle == CameraStyle.Focus)
         {
-            Vector3 dirToLookAt = focusLookAt.position - new Vector3(transform.position.x, focusLookAt.position.y, transform.position.z);
+            var position = focusLookAt.position;
+            var transform1 = transform;
+            var position1 = transform1.position;
+            Vector3 dirToLookAt = position - new Vector3(position1.x, position.y, position1.z);
             orientation.forward = dirToLookAt;
         }
        
@@ -67,9 +72,9 @@ public class ThirdPersonCam : MonoBehaviour
         focusCam.SetActive(false);
         topdownCam.SetActive(false);
 
-        freeCam.SetActive(style == CameraStyle.FREECAM);
-        focusCam.SetActive(style == CameraStyle.FOCUSCAM);
-        topdownCam.SetActive(style == CameraStyle.TOPDOWN);
+        freeCam.SetActive(style == CameraStyle.Free);
+        focusCam.SetActive(style == CameraStyle.Focus);
+        topdownCam.SetActive(style == CameraStyle.Topdown);
         _cameraStyle = style;
     }
 

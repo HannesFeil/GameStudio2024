@@ -76,7 +76,7 @@ public class MouseDash : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(_specialInput && _pm.GetStamina((int)aniaml) > 0)
+        if(_specialInput && _pm.GetStamina((int)aniaml) > staminaDrain)
         {
             Dash();
         }

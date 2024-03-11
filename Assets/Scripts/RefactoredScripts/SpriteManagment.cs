@@ -39,7 +39,7 @@ public class SpriteManagment : MonoBehaviour
     
     private void RotatePlayer()
     {
-        if (gameManagement.ThirdPersonCam.GetcameraStyle() == CameraStyle.FREECAM || gameManagement.ThirdPersonCam.GetcameraStyle() == CameraStyle.TOPDOWN)
+        if (gameManagement.ThirdPersonCam.GetcameraStyle() == CameraStyle.Free || gameManagement.ThirdPersonCam.GetcameraStyle() == CameraStyle.Topdown)
         {
             // rotate player object
             float horizontalInput = Input.GetAxis("Horizontal");
@@ -51,7 +51,7 @@ public class SpriteManagment : MonoBehaviour
                 transform.forward = Vector3.Slerp(transform.forward, inputDir.normalized, rotationSpeed * Time.deltaTime);
             }
         }
-        else if (gameManagement.ThirdPersonCam.GetcameraStyle() == CameraStyle.FOCUSCAM)
+        else if (gameManagement.ThirdPersonCam.GetcameraStyle() == CameraStyle.Focus)
         {
             transform.forward = orientation.forward;
         }
