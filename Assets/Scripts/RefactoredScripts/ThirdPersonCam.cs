@@ -12,12 +12,6 @@ public class ThirdPersonCam : MonoBehaviour
     [SerializeField]
     private Transform orientation;
     [SerializeField]
-    private Transform player;
-    [SerializeField]
-    private Transform playerObj;
-    [SerializeField]
-    private Rigidbody rb;
-    [SerializeField]
     private Transform focusLookAt;
     [SerializeField]
     private GameObject freeCam;
@@ -54,7 +48,7 @@ public class ThirdPersonCam : MonoBehaviour
         if (_cameraStyle == CameraStyle.Free || _cameraStyle == CameraStyle.Topdown)
         {
             // rotate orientation
-            var position = player.position;
+            var position = gameManagement.PlayerMovement.gameObject.transform.position;
             var position1 = transform.position;
             Vector3 viewDir = position - new Vector3(position1.x, position.y, position1.z);
             orientation.forward = viewDir;
