@@ -921,7 +921,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerCam
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4503305129982482464}
     - target: {fileID: 6418009034042391495, guid: 317ded101d888c64384b9582887a036a,
         type: 3}
       propertyPath: m_LocalPosition.x
