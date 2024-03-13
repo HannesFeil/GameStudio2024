@@ -9,8 +9,6 @@ public class MenuManagment : MonoBehaviour
     [Header("Reverences")]
     [SerializeField] 
     private Canvas menu;
-    [SerializeField]
-    private string mainMenu;
 
 
     [Header("keybinds")] [SerializeField] 
@@ -61,7 +59,7 @@ public class MenuManagment : MonoBehaviour
     public void ToMainMenue()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(mainMenu);
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void Reload()
