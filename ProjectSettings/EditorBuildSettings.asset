@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Lilis Levelwork/World03.unity
     guid: e04a18502e67b0a6281a5fe81d643686
   - enabled: 1
-    path: Assets/Scenes/Lilis Levelwork/World04 unfertig.unity
+    path: Assets/Scenes/Lilis Levelwork/World04.unity
     guid: 041a05c6188d1414a9636f6cc0cd2414
   - enabled: 1
     path: Assets/Scenes/Lilis Levelwork/World05.unity
@@ -39,7 +39,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Lilis Levelwork/World07.unity
     guid: 3ef8720d557ec3f4ab7ff5cd13322bcb
   - enabled: 1
-    path: Assets/Scenes/Lilis Levelwork/World08 unfertig.unity
+    path: Assets/Scenes/Lilis Levelwork/World08.unity
     guid: 01538d05094d06c42bf7fb2b67beb3db
   - enabled: 1
     path: Assets/Scenes/Lilis Levelwork/World09 unfertig.unity
