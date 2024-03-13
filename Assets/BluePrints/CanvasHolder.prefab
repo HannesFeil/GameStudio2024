@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 5750675372084991146}
+  mainMenu: TestingGrounds
   pause: 27
 --- !u!1 &7362173251287276080
 GameObject:
@@ -272,11 +273,66 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1353676989153728952, guid: a84d06f6477b1470a91ea0e3e4d9f92a,
+        type: 3}
+      propertyPath: m_Name
+      value: Resume
+      objectReference: {fileID: 0}
+    - target: {fileID: 1938564428463628328, guid: a84d06f6477b1470a91ea0e3e4d9f92a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 110
+      objectReference: {fileID: 0}
     - target: {fileID: 1967189029061125856, guid: a84d06f6477b1470a91ea0e3e4d9f92a,
         type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 6821752756579776270}
+    - target: {fileID: 4354731021223347348, guid: a84d06f6477b1470a91ea0e3e4d9f92a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354731021223347348, guid: a84d06f6477b1470a91ea0e3e4d9f92a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354731021223347348, guid: a84d06f6477b1470a91ea0e3e4d9f92a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5780061165081093996}
+    - target: {fileID: 4354731021223347348, guid: a84d06f6477b1470a91ea0e3e4d9f92a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354731021223347348, guid: a84d06f6477b1470a91ea0e3e4d9f92a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Resume
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354731021223347348, guid: a84d06f6477b1470a91ea0e3e4d9f92a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MenuManagment, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354731021223347348, guid: a84d06f6477b1470a91ea0e3e4d9f92a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931028155194346284, guid: a84d06f6477b1470a91ea0e3e4d9f92a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5780061165081093996}
+    - target: {fileID: 6572209770122562016, guid: a84d06f6477b1470a91ea0e3e4d9f92a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5780061165081093996}
     - target: {fileID: 8884212599553796455, guid: a84d06f6477b1470a91ea0e3e4d9f92a,
         type: 3}
       propertyPath: m_Name
