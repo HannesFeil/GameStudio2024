@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuManagment : MonoBehaviour
 {
     [Header("Reverences")]
     [SerializeField] 
     private Canvas menu;
+    [SerializeField]
+    private string mainMenu;
+
 
     [Header("keybinds")] [SerializeField] 
     private KeyCode pause = KeyCode.Escape;
@@ -51,5 +56,18 @@ public class MenuManagment : MonoBehaviour
         _paused = true;
         menu.enabled = true;
         Time.timeScale = 0;
+    }
+
+    public void ToMainMenue()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(mainMenu);
+    }
+
+    public void Reload()
+    {
+        Time.timeScale = 1;
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
     }
 }
