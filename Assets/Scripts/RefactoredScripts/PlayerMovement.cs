@@ -123,6 +123,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private bool _readyToJump = true;
+    private bool _isJumping;
     private bool _isClimbing;
     private bool _isDashing;
     private bool _isSwinging;
@@ -412,6 +413,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _exitingSlope = true;
         }
+        _isJumping = true;
         _rb.velocity = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
 
         _rb.AddForce(transform.up * jumpForce,ForceMode.Impulse);
@@ -494,6 +496,10 @@ public class PlayerMovement : MonoBehaviour
         return _isClimbing;
     }
 
+    public Vector3 GetLastWallNormal() {
+        return _lizzardClimbing.GetLastWallNormal();
+    }
+
     public void SetDashing(bool dashing)
     {
         _isDashing = dashing;
@@ -537,6 +543,14 @@ public class PlayerMovement : MonoBehaviour
     public bool IsGroundet()
     {
         return _isGrounded;
+    }
+
+    public bool isJumping() {
+        return _isJumping;
+    }
+
+    public void SetNotJumping() {
+        _isJumping = false;
     }
 
     public float GetStamina(int index)

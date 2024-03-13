@@ -20,6 +20,8 @@ public class SpriteManagment : MonoBehaviour
 
     private AnimalType _lastAnimal;
 
+    private bool _cancelJumping = false;
+
     private void Start()
     {
         AnimalType currentAnimal = gameManagement.PlayerMovement.GetAnimalTyp();
@@ -70,6 +72,11 @@ public class SpriteManagment : MonoBehaviour
         _lastAnimal = currentAnimal;
     }
 
+    private void SetNotJumping() {
+        gameManagement.PlayerMovement.SetNotJumping();
+        _cancelJumping = false;
+    }
+
     private void SetAnimation()
     {
         PlayerMovement.MovementStat movementStat = gameManagement.PlayerMovement.getMoveState();
@@ -79,18 +86,19 @@ public class SpriteManagment : MonoBehaviour
         switch (movementStat)
         {
             case PlayerMovement.MovementStat.air: 
-                //Bitte States differenzieren zwischen: Jump, Fall etc.
-                animator.Play("Swim");
                 animator.Play("Eyes_Shrink");
-                //animator.Play("");
+                if (gameManagement.PlayerMovement.isJumping()) {
+                    animator.Play("Jump");
+                    if (!_cancelJumping) {
+                        Invoke(nameof(SetNotJumping), 0.4f);
+                        _cancelJumping = true;
+                    }
+                } else {
+                    animator.Play("Swim");
+                }
                 break;
             case PlayerMovement.MovementStat.climbing: 
-                //Wenn die Eidechse klettert, ?fliegt/schwimmt/hüpft? sie
-                
-                //animator.Play("Fly");
-                animator.Play("Swim");
-                //animator.Play("Bounce");
-                
+                animator.Play("Walk");
                 break;
             case PlayerMovement.MovementStat.dashing: 
                 //Wenn die Maus ihren Dash macht, macht sie Liegestütze und klatscht
@@ -122,6 +130,14 @@ public class SpriteManagment : MonoBehaviour
     {
         PlayerMovement.MovementStat movementStat = gameManagement.PlayerMovement.getMoveState();
         if (movementStat != PlayerMovement.MovementStat.climbing) return;
-        transform.forward = Vector3.up;
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+        Vector3 inputDir = new Vector3(-horizontalInput, 0, verticalInput);
+        if (inputDir != Vector3.zero) {
+            Vector3 wallNormal = gameManagement.PlayerMovement.GetLastWallNormal();
+            Quaternion wallRotation = Quaternion.LookRotation(wallNormal, Vector3.up);
+            Vector3 forward = Quaternion.Euler(wallRotation.eulerAngles.x - 90, wallRotation.eulerAngles.y, 0) * inputDir;
+            transform.rotation = Quaternion.LookRotation(forward, wallNormal);
+        }
     }
 }
