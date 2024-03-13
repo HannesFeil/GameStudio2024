@@ -21,27 +21,27 @@ EditorBuildSettings:
     path: Assets/Scenes/Lilis Levelwork/World01.unity
     guid: c36bef9b858104a79b8f77d840d37ff4
   - enabled: 1
-    path: Assets/Scenes/Lilis Levelwork/World02.unity
+    path: Assets/Scenes/Lilis Levelwork/World02 unfertig.unity
     guid: 86059d498a8a8f76295779e8c5b22d78
   - enabled: 1
     path: Assets/Scenes/Lilis Levelwork/World03.unity
     guid: e04a18502e67b0a6281a5fe81d643686
   - enabled: 1
-    path: Assets/Scenes/Lilis Levelwork/World04.unity
+    path: Assets/Scenes/Lilis Levelwork/World04 unfertig.unity
     guid: 041a05c6188d1414a9636f6cc0cd2414
   - enabled: 1
     path: Assets/Scenes/Lilis Levelwork/World05.unity
     guid: 198ad67f983d02b4c97038f5ab0a32b9
   - enabled: 1
-    path: Assets/Scenes/Lilis Levelwork/World06.unity
+    path: Assets/Scenes/Lilis Levelwork/World06 unfertig.unity
     guid: 75a88b2c69a5f7d4d9a9ee48823ddaa0
   - enabled: 1
-    path: Assets/Scenes/Lilis Levelwork/World07.unity
+    path: Assets/Scenes/Lilis Levelwork/World07 inBearbeitung.unity
     guid: 3ef8720d557ec3f4ab7ff5cd13322bcb
   - enabled: 1
-    path: Assets/Scenes/Lilis Levelwork/World08.unity
+    path: Assets/Scenes/Lilis Levelwork/World08 unfertig.unity
     guid: 01538d05094d06c42bf7fb2b67beb3db
   - enabled: 1
-    path: Assets/Scenes/Lilis Levelwork/World09.unity
+    path: Assets/Scenes/Lilis Levelwork/World09 unfertig.unity
     guid: 3e40397054d9bbb40b160242ecb9f759
   m_configObjects: {}
