@@ -180,4 +180,8 @@ public class LizzardClimbing : MonoBehaviour
         _rb.useGravity = true;
         _pm.SetClimbing(false);
     }
+
+    public Vector3 GetLastWallNormal() {
+        return _lastWallNormal;
+    }
 }
