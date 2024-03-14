@@ -29,10 +29,12 @@ public class Overlaytwo : MonoBehaviour
     private GameObject[] medalion = new GameObject[3];
 
     [SerializeField] private float[] medalionTimes = new float[3];
-    
-    
+
+    //B0BF1A
+
     [Header("Stamina")]
-    private Color[] staminaColor = {new Color(0xFF,0x00,0x00), new Color(0xFF,0xF2,0x05), new Color(0x7C,0xFF,0x01)};
+    //private Color[] staminaColor = {new Color(0xFF,0x00,0x00,1), new Color(0xFF,0xF2,0x05,1), new Color(0x7C,0xFF,0x01,1)};
+    private Color[] staminaColor = { new Color(0xFF, 0x00, 0x00, 1), new Color(0x7B, 0xFE, 0x00, 1), new Color(0x00, 0xFF, 0x00, 1) };
     [SerializeField]
     private float[] staminaThreshold = {0.25f,0.5f,1f};
     [SerializeField]
@@ -50,6 +52,9 @@ public class Overlaytwo : MonoBehaviour
     {
         winningBanner.SetActive(false);
         _lastAnimal = (AnimalType) (((int) gameManagement.PlayerMovement.GetAnimalTyp() + 1) % 4);
+        print(staminaColor[0]);
+        print(staminaColor[1]);
+        print(staminaColor[2]);
         AnimalsDisplay();
         
     }
@@ -95,18 +100,23 @@ public class Overlaytwo : MonoBehaviour
 
     private void StaminaDisplay()
     {
+        print(staminaColor[2]);
+
         int currentAnimal = (int)gameManagement.PlayerMovement.GetAnimalTyp();
         int left = (currentAnimal + 3) % 4;
         int right = (currentAnimal + 1) % 4;
 
         float leftStamina = gameManagement.PlayerMovement.GetStamina(left) / 100;
         stamina[0].value = leftStamina;
-        staminaImage[0].color = staminaColor[floatToIndex(leftStamina)];
+
+        Color leftCol = staminaColor[floatToIndex(leftStamina)];
+        staminaImage[0].color = leftCol;
 
 
         float rightStamina = gameManagement.PlayerMovement.GetStamina(right) / 100;
         stamina[2].value = rightStamina;
-        staminaImage[2].color = staminaColor[floatToIndex(rightStamina)];
+        Color rightCol = staminaColor[floatToIndex(leftStamina)];
+        staminaImage[2].color = rightCol;
 
         float desiredStamina = gameManagement.PlayerMovement.GetStamina(currentAnimal) / 100;
         _centerStamnia = Mathf.Lerp(_centerStamnia, desiredStamina, 
@@ -129,6 +139,7 @@ public class Overlaytwo : MonoBehaviour
                 return i;
             }
         }
+        print("Wrong");
         return -1;
     }
 
