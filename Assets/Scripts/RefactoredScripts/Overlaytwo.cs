@@ -100,7 +100,6 @@ public class Overlaytwo : MonoBehaviour
 
     private void StaminaDisplay()
     {
-        print(staminaColor[2]);
 
         int currentAnimal = (int)gameManagement.PlayerMovement.GetAnimalTyp();
         int left = (currentAnimal + 3) % 4;
@@ -139,7 +138,6 @@ public class Overlaytwo : MonoBehaviour
                 return i;
             }
         }
-        print("Wrong");
         return -1;
     }
 

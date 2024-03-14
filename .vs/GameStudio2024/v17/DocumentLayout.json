@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\aaron\\GameStudio2024\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{6E4ACE3B-0313-32BC-1E86-166ADDDF6261}|Assembly-CSharp.csproj|c:\\users\\aaron\\gamestudio2024\\assets\\scripts\\refactoredscripts\\medalionmanagment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6E4ACE3B-0313-32BC-1E86-166ADDDF6261}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\refactoredscripts\\medalionmanagment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6E4ACE3B-0313-32BC-1E86-166ADDDF6261}|Assembly-CSharp.csproj|c:\\users\\aaron\\gamestudio2024\\assets\\scripts\\refactoredscripts\\overlaytwo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6E4ACE3B-0313-32BC-1E86-166ADDDF6261}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\refactoredscripts\\overlaytwo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6E4ACE3B-0313-32BC-1E86-166ADDDF6261}|Assembly-CSharp.csproj|C:\\Users\\aaron\\GameStudio2024\\assets\\scripts\\refactoredscripts\\gamemanagementrefactored.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6E4ACE3B-0313-32BC-1E86-166ADDDF6261}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\refactoredscripts\\gamemanagementrefactored.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6E4ACE3B-0313-32BC-1E86-166ADDDF6261}|Assembly-CSharp.csproj|C:\\Users\\aaron\\GameStudio2024\\assets\\scripts\\refactoredscripts\\menumanagment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -35,10 +43,6 @@
       "RelativeMoniker": "D:0:0:{6E4ACE3B-0313-32BC-1E86-166ADDDF6261}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\refactoredscripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6E4ACE3B-0313-32BC-1E86-166ADDDF6261}|Assembly-CSharp.csproj|C:\\Users\\aaron\\GameStudio2024\\assets\\scripts\\refactoredscripts\\gamemanagementrefactored.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6E4ACE3B-0313-32BC-1E86-166ADDDF6261}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\refactoredscripts\\gamemanagementrefactored.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6E4ACE3B-0313-32BC-1E86-166ADDDF6261}|Assembly-CSharp.csproj|C:\\Users\\aaron\\GameStudio2024\\assets\\scripts\\refactoredscripts\\snakeswing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6E4ACE3B-0313-32BC-1E86-166ADDDF6261}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\refactoredscripts\\snakeswing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -54,11 +58,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "MedalionManagment.cs",
+              "DocumentMoniker": "C:\\Users\\aaron\\GameStudio2024\\Assets\\Scripts\\RefactoredScripts\\MedalionManagment.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\RefactoredScripts\\MedalionManagment.cs",
+              "ToolTip": "C:\\Users\\aaron\\GameStudio2024\\Assets\\Scripts\\RefactoredScripts\\MedalionManagment.cs",
+              "RelativeToolTip": "Assets\\Scripts\\RefactoredScripts\\MedalionManagment.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABQAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-14T22:57:58.819Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "MenuManagment.cs",
               "DocumentMoniker": "C:\\Users\\aaron\\GameStudio2024\\Assets\\Scripts\\RefactoredScripts\\MenuManagment.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\RefactoredScripts\\MenuManagment.cs",
@@ -70,7 +87,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "BirdMove.cs",
               "DocumentMoniker": "C:\\Users\\aaron\\GameStudio2024\\Assets\\Scripts\\Old\\BirdMove.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Old\\BirdMove.cs",
@@ -82,7 +99,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "LizzardClimbing.cs",
               "DocumentMoniker": "C:\\Users\\aaron\\GameStudio2024\\Assets\\Scripts\\RefactoredScripts\\LizzardClimbing.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\RefactoredScripts\\LizzardClimbing.cs",
@@ -94,19 +111,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 2,
               "Title": "GameManagementRefactored.cs",
               "DocumentMoniker": "C:\\Users\\aaron\\GameStudio2024\\Assets\\Scripts\\RefactoredScripts\\GameManagementRefactored.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\RefactoredScripts\\GameManagementRefactored.cs",
               "ToolTip": "C:\\Users\\aaron\\GameStudio2024\\Assets\\Scripts\\RefactoredScripts\\GameManagementRefactored.cs",
               "RelativeToolTip": "Assets\\Scripts\\RefactoredScripts\\GameManagementRefactored.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
+              "ViewState": "AQIAABgAAAAAAAAAAADwvygAAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-10T09:34:23.551Z"
+              "WhenOpened": "2024-03-10T09:34:23.551Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "BirdGlide.cs",
               "DocumentMoniker": "C:\\Users\\aaron\\GameStudio2024\\Assets\\Scripts\\RefactoredScripts\\BirdGlide.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\RefactoredScripts\\BirdGlide.cs",
@@ -118,7 +136,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "PlayerMovement.cs",
               "DocumentMoniker": "C:\\Users\\aaron\\GameStudio2024\\Assets\\Scripts\\RefactoredScripts\\PlayerMovement.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\RefactoredScripts\\PlayerMovement.cs",
@@ -130,7 +148,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "SpriteManagment.cs",
               "DocumentMoniker": "C:\\Users\\aaron\\GameStudio2024\\Assets\\Scripts\\RefactoredScripts\\SpriteManagment.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\RefactoredScripts\\SpriteManagment.cs",
@@ -142,7 +160,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "SnakeSwing.cs",
               "DocumentMoniker": "C:\\Users\\aaron\\GameStudio2024\\Assets\\Scripts\\RefactoredScripts\\SnakeSwing.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\RefactoredScripts\\SnakeSwing.cs",
@@ -154,20 +172,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Overlaytwo.cs",
               "DocumentMoniker": "C:\\Users\\aaron\\GameStudio2024\\Assets\\Scripts\\RefactoredScripts\\Overlaytwo.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\RefactoredScripts\\Overlaytwo.cs",
               "ToolTip": "C:\\Users\\aaron\\GameStudio2024\\Assets\\Scripts\\RefactoredScripts\\Overlaytwo.cs",
               "RelativeToolTip": "Assets\\Scripts\\RefactoredScripts\\Overlaytwo.cs",
-              "ViewState": "AQIAABQAAAAAAAAAAAAQwCMAAAB9AAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGUAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-08T20:18:13.025Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "MainMenu.cs",
               "DocumentMoniker": "C:\\Users\\aaron\\GameStudio2024\\Assets\\Scripts\\RefactoredScripts\\MainMenu.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\RefactoredScripts\\MainMenu.cs",
@@ -179,7 +197,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "ThirdPersonCam.cs",
               "DocumentMoniker": "C:\\Users\\aaron\\GameStudio2024\\Assets\\Scripts\\RefactoredScripts\\ThirdPersonCam.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\RefactoredScripts\\ThirdPersonCam.cs",

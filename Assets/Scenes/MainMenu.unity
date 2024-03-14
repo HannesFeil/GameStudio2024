@@ -489,6 +489,7 @@ GameObject:
   - component: {fileID: 139780766}
   - component: {fileID: 139780765}
   - component: {fileID: 139780764}
+  - component: {fileID: 139780767}
   m_Layer: 5
   m_Name: World02
   m_TagString: Untagged
@@ -611,6 +612,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 139780762}
   m_CullTransparentMesh: 1
+--- !u!114 &139780767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139780762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1dfa63a460e8784f9dd4ce6c8216ec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  medalion:
+  - {fileID: 902797005}
+  - {fileID: 1064972776}
+  - {fileID: 1866104410}
+  timeRequirerments:
+  - 10
+  - 8
+  - 6
+  worldName: World02
 --- !u!1 &179801293
 GameObject:
   m_ObjectHideFlags: 0
@@ -2102,6 +2124,7 @@ GameObject:
   - component: {fileID: 769892263}
   - component: {fileID: 769892262}
   - component: {fileID: 769892261}
+  - component: {fileID: 769892264}
   m_Layer: 5
   m_Name: World08
   m_TagString: Untagged
@@ -2224,6 +2247,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 769892259}
   m_CullTransparentMesh: 1
+--- !u!114 &769892264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769892259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1dfa63a460e8784f9dd4ce6c8216ec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  medalion:
+  - {fileID: 104736662}
+  - {fileID: 1784473416}
+  - {fileID: 212411102}
+  timeRequirerments:
+  - 10
+  - 8
+  - 6
+  worldName: World08
 --- !u!1 &785349216
 GameObject:
   m_ObjectHideFlags: 0
@@ -2379,6 +2423,7 @@ GameObject:
   - component: {fileID: 867927061}
   - component: {fileID: 867927060}
   - component: {fileID: 867927059}
+  - component: {fileID: 867927062}
   m_Layer: 5
   m_Name: World03
   m_TagString: Untagged
@@ -2501,6 +2546,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867927057}
   m_CullTransparentMesh: 1
+--- !u!114 &867927062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867927057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1dfa63a460e8784f9dd4ce6c8216ec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  medalion:
+  - {fileID: 1443973533}
+  - {fileID: 656569753}
+  - {fileID: 1839407688}
+  timeRequirerments:
+  - 10
+  - 8
+  - 6
+  worldName: World03
 --- !u!1 &902797005
 GameObject:
   m_ObjectHideFlags: 0
@@ -3113,6 +3179,7 @@ GameObject:
   - component: {fileID: 1108737371}
   - component: {fileID: 1108737370}
   - component: {fileID: 1108737369}
+  - component: {fileID: 1108737372}
   m_Layer: 5
   m_Name: World07
   m_TagString: Untagged
@@ -3235,6 +3302,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1108737367}
   m_CullTransparentMesh: 1
+--- !u!114 &1108737372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108737367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1dfa63a460e8784f9dd4ce6c8216ec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  medalion:
+  - {fileID: 1291257670}
+  - {fileID: 785349216}
+  - {fileID: 1511399198}
+  timeRequirerments:
+  - 10
+  - 8
+  - 6
+  worldName: World07
 --- !u!1 &1139188649
 GameObject:
   m_ObjectHideFlags: 0
@@ -3939,6 +4027,7 @@ GameObject:
   - component: {fileID: 1447505329}
   - component: {fileID: 1447505328}
   - component: {fileID: 1447505327}
+  - component: {fileID: 1447505330}
   m_Layer: 5
   m_Name: World05
   m_TagString: Untagged
@@ -4061,6 +4150,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1447505325}
   m_CullTransparentMesh: 1
+--- !u!114 &1447505330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447505325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1dfa63a460e8784f9dd4ce6c8216ec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  medalion:
+  - {fileID: 2085060728}
+  - {fileID: 543232299}
+  - {fileID: 558391300}
+  timeRequirerments:
+  - 10
+  - 8
+  - 6
+  worldName: World05
 --- !u!1 &1487340979
 GameObject:
   m_ObjectHideFlags: 0
@@ -4073,6 +4183,7 @@ GameObject:
   - component: {fileID: 1487340983}
   - component: {fileID: 1487340982}
   - component: {fileID: 1487340981}
+  - component: {fileID: 1487340984}
   m_Layer: 5
   m_Name: World06
   m_TagString: Untagged
@@ -4195,6 +4306,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1487340979}
   m_CullTransparentMesh: 1
+--- !u!114 &1487340984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487340979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1dfa63a460e8784f9dd4ce6c8216ec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  medalion:
+  - {fileID: 2081464539}
+  - {fileID: 259131690}
+  - {fileID: 917249892}
+  timeRequirerments:
+  - 10
+  - 8
+  - 6
+  worldName: World06
 --- !u!1 &1500994333
 GameObject:
   m_ObjectHideFlags: 0
@@ -4207,6 +4339,7 @@ GameObject:
   - component: {fileID: 1500994337}
   - component: {fileID: 1500994336}
   - component: {fileID: 1500994335}
+  - component: {fileID: 1500994338}
   m_Layer: 5
   m_Name: World09
   m_TagString: Untagged
@@ -4329,6 +4462,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1500994333}
   m_CullTransparentMesh: 1
+--- !u!114 &1500994338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500994333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1dfa63a460e8784f9dd4ce6c8216ec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  medalion:
+  - {fileID: 1329813780}
+  - {fileID: 179801293}
+  - {fileID: 55325309}
+  timeRequirerments:
+  - 10
+  - 8
+  - 6
+  worldName: World09
 --- !u!1 &1511399198
 GameObject:
   m_ObjectHideFlags: 0
@@ -4529,6 +4683,7 @@ GameObject:
   - component: {fileID: 1677246725}
   - component: {fileID: 1677246724}
   - component: {fileID: 1677246723}
+  - component: {fileID: 1677246726}
   m_Layer: 5
   m_Name: World04
   m_TagString: Untagged
@@ -4651,6 +4806,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1677246721}
   m_CullTransparentMesh: 1
+--- !u!114 &1677246726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677246721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1dfa63a460e8784f9dd4ce6c8216ec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  medalion:
+  - {fileID: 604330508}
+  - {fileID: 1717051939}
+  - {fileID: 373498717}
+  timeRequirerments:
+  - 10
+  - 8
+  - 6
+  worldName: World04
 --- !u!1 &1701296330
 GameObject:
   m_ObjectHideFlags: 0
@@ -4776,6 +4952,7 @@ GameObject:
   - component: {fileID: 1705201820}
   - component: {fileID: 1705201819}
   - component: {fileID: 1705201818}
+  - component: {fileID: 1705201821}
   m_Layer: 5
   m_Name: World01
   m_TagString: Untagged
@@ -4898,6 +5075,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705201816}
   m_CullTransparentMesh: 1
+--- !u!114 &1705201821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705201816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1dfa63a460e8784f9dd4ce6c8216ec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  medalion:
+  - {fileID: 1591875637}
+  - {fileID: 1139188649}
+  - {fileID: 1097098403}
+  timeRequirerments:
+  - 10
+  - 8
+  - 6
+  worldName: World01
 --- !u!1 &1716484810
 GameObject:
   m_ObjectHideFlags: 0

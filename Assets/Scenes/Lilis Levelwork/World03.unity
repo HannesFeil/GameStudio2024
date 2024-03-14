@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.080439374, g: 0.038628038, b: 0.12621477, a: 1}
+  m_IndirectSpecularColor: {r: 0.080880284, g: 0.03906955, b: 0.12665133, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -140,6 +140,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Flower Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 6278342169471171888, guid: 5e7b10cbd235f587ea1390cc17019d02,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6659405878298371978, guid: 5e7b10cbd235f587ea1390cc17019d02,
         type: 3}
@@ -451,6 +456,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flower Left Middle
       objectReference: {fileID: 0}
+    - target: {fileID: 4699902054403840068, guid: c80d80c66f6e4f36bbf0cdb12634f83d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5364553141963375358, guid: c80d80c66f6e4f36bbf0cdb12634f83d,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -607,6 +617,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Flower Back Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 7476200891000678269, guid: 22bcdbb276214d6da88e53c627ded85c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7821377841408097735, guid: 22bcdbb276214d6da88e53c627ded85c,
         type: 3}
@@ -1261,6 +1276,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Eimer
+      objectReference: {fileID: 0}
+    - target: {fileID: 896956797900110428, guid: 5db7860f7f8b16490b861d7a83372344,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1689515084715039625, guid: 5db7860f7f8b16490b861d7a83372344,
         type: 3}
@@ -2283,6 +2303,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box Left
       objectReference: {fileID: 0}
+    - target: {fileID: 6913579403000719992, guid: b8d5a7d4067116ee698d5cffc342a51d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2626,7 +2651,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 477758888}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Start Decorations
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2987,6 +3012,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stone Left
       objectReference: {fileID: 0}
+    - target: {fileID: 8822173320981185520, guid: 63cd6b8817edfc4599cff4f41a3b5b34,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3007,7 +3037,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 550372258}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Boden Decorations
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3173,7 +3203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661205475}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: World
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3496,7 +3526,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 835901316}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: "\xDCbergangsplattformen"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3662,6 +3692,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fass B
       objectReference: {fileID: 0}
+    - target: {fileID: 5448976991835520818, guid: 03607e8be8ec404098112f976143400b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5809181468690112231, guid: 03607e8be8ec404098112f976143400b,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3755,6 +3790,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Flower Front Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 9103513383555174223, guid: 9bd43e44cd59f7ca6b3c4b73171777f0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4162,6 +4202,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mashroom Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 7126883366080069660, guid: 9a1c72491d3a012628e416fc0fb0e3c0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7614485284002437798, guid: 9a1c72491d3a012628e416fc0fb0e3c0,
         type: 3}
@@ -4802,6 +4847,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fass A
       objectReference: {fileID: 0}
+    - target: {fileID: 5448976991835520818, guid: 03607e8be8ec404098112f976143400b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5809181468690112231, guid: 03607e8be8ec404098112f976143400b,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4886,6 +4936,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mashromm Left
       objectReference: {fileID: 0}
+    - target: {fileID: 9156554941519057692, guid: f866a11cf373b1d6d9a6111ab664d343,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4906,7 +4961,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1085724336}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ziel Decorations
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5528,7 +5583,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1299338759}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ziel Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5898,6 +5953,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Middle Pot
       objectReference: {fileID: 0}
+    - target: {fileID: 3932240997666838611, guid: 54ca1bcbb129bdc9194c71172a485f24,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4456858249497969385, guid: 54ca1bcbb129bdc9194c71172a485f24,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -6052,6 +6112,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Pot
       objectReference: {fileID: 0}
+    - target: {fileID: 3033038837945554336, guid: f0f0d267e3111e879a09de7559aa735e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3537428733576803445, guid: f0f0d267e3111e879a09de7559aa735e,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -6150,6 +6215,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Box Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 6913579403000719992, guid: b8d5a7d4067116ee698d5cffc342a51d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6296,6 +6366,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mashroom Right
       objectReference: {fileID: 0}
+    - target: {fileID: 7126883366080069660, guid: 9a1c72491d3a012628e416fc0fb0e3c0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7614485284002437798, guid: 9a1c72491d3a012628e416fc0fb0e3c0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6374,6 +6449,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Flower Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011741552873312328, guid: 26ac2d0140740301b9aef0cdc6873dac,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5676392395435166450, guid: 26ac2d0140740301b9aef0cdc6873dac,
         type: 3}
@@ -6518,6 +6598,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small Pot
+      objectReference: {fileID: 0}
+    - target: {fileID: 7825226547566927303, guid: 13ddbc7f9ea631c589ce6316325171fd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8617697698553887762, guid: 13ddbc7f9ea631c589ce6316325171fd,
         type: 3}
@@ -7151,6 +7236,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flower Back Middle
       objectReference: {fileID: 0}
+    - target: {fileID: 7476200891000678269, guid: 22bcdbb276214d6da88e53c627ded85c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7821377841408097735, guid: 22bcdbb276214d6da88e53c627ded85c,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -7304,6 +7394,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Flower Front Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 9103513383555174223, guid: 9bd43e44cd59f7ca6b3c4b73171777f0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7572,7 +7667,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1610660667}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Start Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7669,7 +7764,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1632700692}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Boden Decorations
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8561,6 +8656,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Tr\xE4nke"
       objectReference: {fileID: 0}
+    - target: {fileID: 2504165350240520013, guid: 3bcef246fafd4955d9a64598cc1b97df,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2993563011704020471, guid: 3bcef246fafd4955d9a64598cc1b97df,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -8660,6 +8760,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mashroom Right
       objectReference: {fileID: 0}
+    - target: {fileID: 3562767003808373517, guid: ad9d30b468c74f160a0029f37eb414f3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4195856330932306359, guid: ad9d30b468c74f160a0029f37eb414f3,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -8754,6 +8859,16 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 563367114280322631, guid: fd138bad7cbea4a64926cbeaf2f96363,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.000000021304736
+      objectReference: {fileID: 0}
+    - target: {fileID: 563367114280322631, guid: fd138bad7cbea4a64926cbeaf2f96363,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.000000008013268
+      objectReference: {fileID: 0}
     - target: {fileID: 789795969088250045, guid: fd138bad7cbea4a64926cbeaf2f96363,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -8817,42 +8932,77 @@ PrefabInstance:
     - target: {fileID: 3095696446810528680, guid: fd138bad7cbea4a64926cbeaf2f96363,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000007652616
+      value: 0.000000012594241
       objectReference: {fileID: 0}
     - target: {fileID: 3095696446810528680, guid: fd138bad7cbea4a64926cbeaf2f96363,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000003931043
+      value: 0.000000006469488
+      objectReference: {fileID: 0}
+    - target: {fileID: 3150315067242448604, guid: fd138bad7cbea4a64926cbeaf2f96363,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3150315067242448604, guid: fd138bad7cbea4a64926cbeaf2f96363,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3150315067242448604, guid: fd138bad7cbea4a64926cbeaf2f96363,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3150315067242448604, guid: fd138bad7cbea4a64926cbeaf2f96363,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.746064
+      objectReference: {fileID: 0}
+    - target: {fileID: 3150315067242448604, guid: fd138bad7cbea4a64926cbeaf2f96363,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.66587436
       objectReference: {fileID: 0}
     - target: {fileID: 3150315067242448604, guid: fd138bad7cbea4a64926cbeaf2f96363,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000040205727
+      value: -0.000000002115299
       objectReference: {fileID: 0}
     - target: {fileID: 3150315067242448604, guid: fd138bad7cbea4a64926cbeaf2f96363,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000010443209
+      value: 5.4943583e-10
       objectReference: {fileID: 0}
     - target: {fileID: 3828361930781939076, guid: fd138bad7cbea4a64926cbeaf2f96363,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000000069587394
+      value: 0.0000000069587376
       objectReference: {fileID: 0}
     - target: {fileID: 3828361930781939076, guid: fd138bad7cbea4a64926cbeaf2f96363,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000015400108
+      value: -0.0000000015400108
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348992482722989128, guid: fd138bad7cbea4a64926cbeaf2f96363,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8835039
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348992482722989128, guid: fd138bad7cbea4a64926cbeaf2f96363,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.4684238
       objectReference: {fileID: 0}
     - target: {fileID: 4348992482722989128, guid: fd138bad7cbea4a64926cbeaf2f96363,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000015924149
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4348992482722989128, guid: fd138bad7cbea4a64926cbeaf2f96363,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000065177486
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4503305129982482464, guid: fd138bad7cbea4a64926cbeaf2f96363,
         type: 3}
@@ -8877,67 +9027,82 @@ PrefabInstance:
     - target: {fileID: 4503305129982482464, guid: fd138bad7cbea4a64926cbeaf2f96363,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000001672432
+      value: -0.000000016724321
       objectReference: {fileID: 0}
     - target: {fileID: 4503305129982482464, guid: fd138bad7cbea4a64926cbeaf2f96363,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.00000000404433
+      value: -0.0000000040443306
       objectReference: {fileID: 0}
     - target: {fileID: 4853562216892274794, guid: fd138bad7cbea4a64926cbeaf2f96363,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.91939485
+      value: 0.8760123
       objectReference: {fileID: 0}
     - target: {fileID: 4853562216892274794, guid: fd138bad7cbea4a64926cbeaf2f96363,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.393336
+      value: -0.48228884
       objectReference: {fileID: 0}
     - target: {fileID: 4853562216892274794, guid: fd138bad7cbea4a64926cbeaf2f96363,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000022372088
+      value: 0.000000015073006
       objectReference: {fileID: 0}
     - target: {fileID: 4853562216892274794, guid: fd138bad7cbea4a64926cbeaf2f96363,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000000957124
+      value: 0.000000008298447
       objectReference: {fileID: 0}
     - target: {fileID: 5190155635835227349, guid: fd138bad7cbea4a64926cbeaf2f96363,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9130948
+      value: 0.86831856
       objectReference: {fileID: 0}
     - target: {fileID: 5190155635835227349, guid: fd138bad7cbea4a64926cbeaf2f96363,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.40774742
+      value: -0.49600694
       objectReference: {fileID: 0}
     - target: {fileID: 5190155635835227349, guid: fd138bad7cbea4a64926cbeaf2f96363,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000022218787
+      value: -0.000000014940621
       objectReference: {fileID: 0}
     - target: {fileID: 5190155635835227349, guid: fd138bad7cbea4a64926cbeaf2f96363,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000009921919
+      value: -0.000000008534484
       objectReference: {fileID: 0}
     - target: {fileID: 7855260766003853105, guid: fd138bad7cbea4a64926cbeaf2f96363,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000040642906
+      value: -0.00000004064291
       objectReference: {fileID: 0}
     - target: {fileID: 7855260766003853105, guid: fd138bad7cbea4a64926cbeaf2f96363,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000085858
+      value: 0.000000008585801
       objectReference: {fileID: 0}
     - target: {fileID: 8126625412509221602, guid: fd138bad7cbea4a64926cbeaf2f96363,
         type: 3}
       propertyPath: m_Name
       value: AllSet
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663189445885503162, guid: fd138bad7cbea4a64926cbeaf2f96363,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663189445885503162, guid: fd138bad7cbea4a64926cbeaf2f96363,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663189445885503162, guid: fd138bad7cbea4a64926cbeaf2f96363,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 37
       objectReference: {fileID: 0}
     - target: {fileID: 9183137721792521800, guid: fd138bad7cbea4a64926cbeaf2f96363,
         type: 3}
@@ -9480,6 +9645,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Stone Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 6031049810120904461, guid: 5e908f97f0715c2eca8502c24a2fa2c2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6411234115198244279, guid: 5e908f97f0715c2eca8502c24a2fa2c2,
         type: 3}
@@ -11385,6 +11555,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flower Front Middle
       objectReference: {fileID: 0}
+    - target: {fileID: 7476200891000678269, guid: 22bcdbb276214d6da88e53c627ded85c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7821377841408097735, guid: 22bcdbb276214d6da88e53c627ded85c,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -11669,6 +11844,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Flower Back Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 9103513383555174223, guid: 9bd43e44cd59f7ca6b3c4b73171777f0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

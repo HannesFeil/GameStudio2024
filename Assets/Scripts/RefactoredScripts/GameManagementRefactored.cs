@@ -41,7 +41,7 @@ public class GameManagementRefactored : MonoBehaviour
     public void StopTimer()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
-        if (PlayerPrefs.GetFloat(currentSceneName, -1f) < _time)
+        if (PlayerPrefs.GetFloat(currentSceneName, float.MaxValue) > _time)
         {
             PlayerPrefs.SetFloat(currentSceneName,Mathf.Round(_time * 100) / 100);
         }
