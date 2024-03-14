@@ -419,10 +419,10 @@ public class PlayerMovement : MonoBehaviour
             }
         } else if (_isGrounded )
         {
-            _rb.AddForce(_moveDirection.normalized * walkSpeed * 10f, ForceMode.Force);
+            _rb.AddForce(_moveDirection.normalized * walkSpeed * 6, ForceMode.Force);
         } else if(!_isGrounded)
         {
-            _rb.AddForce(_moveDirection.normalized * walkSpeed * 10f * airMultiplier, ForceMode.Force);
+            _rb.AddForce(_moveDirection.normalized * walkSpeed * 6 * airMultiplier, ForceMode.Force);
         }
 
         _rb.useGravity = !OnSlope();
