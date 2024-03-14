@@ -9,10 +9,15 @@ public class MenuManagment : MonoBehaviour
     [Header("Reverences")]
     [SerializeField] 
     private Canvas menu;
-
-
-    [Header("keybinds")] [SerializeField] 
+    
+    
+    
+    [Header("keybinds")] 
+    [SerializeField] 
     private KeyCode pause = KeyCode.Escape;
+
+    [SerializeField] 
+    private KeyCode restart = KeyCode.R;
 
     private bool _paused;
     
@@ -35,6 +40,11 @@ public class MenuManagment : MonoBehaviour
             {
                 Pause();
             }
+        }
+
+        if (Input.GetKeyDown(restart))
+        {
+            Reload();
         }
     }
 
