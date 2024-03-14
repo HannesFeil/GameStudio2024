@@ -1,6 +1,7 @@
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Overlaytwo : MonoBehaviour
@@ -8,8 +9,8 @@ public class Overlaytwo : MonoBehaviour
     [Header("References")]
     [SerializeField]
     private GameManagementRefactored gameManagement;
-    [SerializeField]
-    private TMP_Text speedometer;
+    [FormerlySerializedAs("Time")] [FormerlySerializedAs("speedometer")] [SerializeField]
+    private TMP_Text time;
     [SerializeField]
     private TMP_Text moveState;
     [SerializeField]
@@ -20,8 +21,16 @@ public class Overlaytwo : MonoBehaviour
     private Slider[] stamina = new Slider[3];
     [SerializeField]
     private Image[] staminaImage = new Image[3];
+    [SerializeField] 
+    private GameObject winningBanner;
     [SerializeField]
+    private TMP_Text finalTime;
+    [SerializeField] 
+    private GameObject[] medalion = new GameObject[3];
 
+    [SerializeField] private float[] medalionTimes = new float[3];
+    
+    
     [Header("Stamina")]
     private Color[] staminaColor = {new Color(0xFF,0x00,0x00), new Color(0xFF,0xF2,0x05), new Color(0x7C,0xFF,0x01)};
     [SerializeField]
@@ -39,6 +48,7 @@ public class Overlaytwo : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        winningBanner.SetActive(false);
         _lastAnimal = (AnimalType) (((int) gameManagement.PlayerMovement.GetAnimalTyp() + 1) % 4);
         AnimalsDisplay();
         
@@ -46,8 +56,8 @@ public class Overlaytwo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speedometer.text = "Speed :" + gameManagement.PlayerMovement.getVelocity();
-        moveState.text = gameManagement.PlayerMovement.getMoveState().ToString();
+        time.text = "Speed :" + gameManagement.PlayerMovement.getVelocity();
+        moveState.text = "Time :" + Mathf.Round(gameManagement.GameTime * 100) / 100;
         AnimalsDisplay();
         StaminaDisplay();
     }
@@ -100,7 +110,7 @@ public class Overlaytwo : MonoBehaviour
 
         float desiredStamina = gameManagement.PlayerMovement.GetStamina(currentAnimal) / 100;
         _centerStamnia = Mathf.Lerp(_centerStamnia, desiredStamina, 
-            (_useSwitchSpeed ? interpellationSwitchSpeed : interpellationSpeed) * Time.deltaTime);
+            (_useSwitchSpeed ? interpellationSwitchSpeed : interpellationSpeed) * UnityEngine.Time.deltaTime);
         if(_useSwitchSpeed && Mathf.Abs(desiredStamina - _centerStamnia) < 0.01f)
         {
             _useSwitchSpeed = false;
@@ -120,5 +130,23 @@ public class Overlaytwo : MonoBehaviour
             }
         }
         return -1;
+    }
+
+    public void DisplayWinnigBanner()
+    {
+        winningBanner.SetActive(true);
+        Time.timeScale = 0;
+        finalTime.text = "" + Mathf.Round(gameManagement.GameTime * 100) / 100;
+        for (int i = 0; i < medalion.Length; i++)
+        {
+            if (medalionTimes[i] > gameManagement.GameTime)
+            {
+                medalion[i].SetActive(true);
+            }
+            else
+            {
+                medalion[i].SetActive(false);
+            }
+        }
     }
 }
