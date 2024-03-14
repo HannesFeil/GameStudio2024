@@ -25,7 +25,6 @@ public class BirdGlide : MonoBehaviour
 
     [Header("Inputs")]
     private bool _specialInput;
-    private Vector3 _glideforward;
 
     // Start is called before the first frame update
     public void Setup()
@@ -69,13 +68,12 @@ public class BirdGlide : MonoBehaviour
     private void StartGlide()
     {
         _pm.SetGliding(true);
-        _glideforward = orientation.forward;
     }
 
     void glideMove()
     {
         _pm.SetStamina((int)aniaml, _pm.GetStamina((int)aniaml) - (staminaDrain * Time.deltaTime));
-        _rb.AddForce(_glideforward * glideBoost, ForceMode.Force);
+        _rb.AddForce(orientation.forward * glideBoost, ForceMode.Force);
     }
 
     private void StopGlide()

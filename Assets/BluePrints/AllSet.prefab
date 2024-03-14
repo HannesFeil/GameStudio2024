@@ -840,7 +840,7 @@ PrefabInstance:
     - target: {fileID: 3454156174205675547, guid: 317ded101d888c64384b9582887a036a,
         type: 3}
       propertyPath: glideBoost
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3454156174205675547, guid: 317ded101d888c64384b9582887a036a,
         type: 3}
@@ -889,8 +889,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4260860731546213602, guid: 317ded101d888c64384b9582887a036a,
         type: 3}
+      propertyPath: airSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4260860731546213602, guid: 317ded101d888c64384b9582887a036a,
+        type: 3}
       propertyPath: dashSpeed
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4260860731546213602, guid: 317ded101d888c64384b9582887a036a,
         type: 3}
@@ -899,8 +904,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4260860731546213602, guid: 317ded101d888c64384b9582887a036a,
         type: 3}
+      propertyPath: jumpForce
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4260860731546213602, guid: 317ded101d888c64384b9582887a036a,
+        type: 3}
       propertyPath: glideSpeed
       value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4260860731546213602, guid: 317ded101d888c64384b9582887a036a,
+        type: 3}
+      propertyPath: swingSpeed
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4260860731546213602, guid: 317ded101d888c64384b9582887a036a,
         type: 3}
@@ -910,18 +925,83 @@ PrefabInstance:
     - target: {fileID: 4260860731546213602, guid: 317ded101d888c64384b9582887a036a,
         type: 3}
       propertyPath: climbingSpeed
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4260860731546213602, guid: 317ded101d888c64384b9582887a036a,
         type: 3}
       propertyPath: gameManagement
       value: 
       objectReference: {fileID: 1944806450093370757}
+    - target: {fileID: 4260860731546213602, guid: 317ded101d888c64384b9582887a036a,
+        type: 3}
+      propertyPath: staminaRecoveryRate
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4260860731546213602, guid: 317ded101d888c64384b9582887a036a,
+        type: 3}
+      propertyPath: airSpeedChangeFactor
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4260860731546213602, guid: 317ded101d888c64384b9582887a036a,
+        type: 3}
+      propertyPath: dashSpeedChangeFactor
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4260860731546213602, guid: 317ded101d888c64384b9582887a036a,
+        type: 3}
+      propertyPath: walkSpeedChangeFactor
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4260860731546213602, guid: 317ded101d888c64384b9582887a036a,
+        type: 3}
+      propertyPath: glideSpeedChangeFactor
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4260860731546213602, guid: 317ded101d888c64384b9582887a036a,
+        type: 3}
+      propertyPath: swingSpeedChangeFactor
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4260860731546213602, guid: 317ded101d888c64384b9582887a036a,
+        type: 3}
+      propertyPath: climbingSpeedChangeFactor
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5944945353948358899, guid: 317ded101d888c64384b9582887a036a,
+        type: 3}
+      propertyPath: dashForce
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5944945353948358899, guid: 317ded101d888c64384b9582887a036a,
         type: 3}
       propertyPath: playerCam
       value: 
       objectReference: {fileID: 4503305129982482464}
+    - target: {fileID: 5944945353948358899, guid: 317ded101d888c64384b9582887a036a,
+        type: 3}
+      propertyPath: staminaDrain
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6370120445146226989, guid: 317ded101d888c64384b9582887a036a,
+        type: 3}
+      propertyPath: climbSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6370120445146226989, guid: 317ded101d888c64384b9582887a036a,
+        type: 3}
+      propertyPath: staminaDrain
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6370120445146226989, guid: 317ded101d888c64384b9582887a036a,
+        type: 3}
+      propertyPath: climbJumpUpForce
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6370120445146226989, guid: 317ded101d888c64384b9582887a036a,
+        type: 3}
+      propertyPath: climbJumpBackForce
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6418009034042391495, guid: 317ded101d888c64384b9582887a036a,
         type: 3}
       propertyPath: m_LocalPosition.x
