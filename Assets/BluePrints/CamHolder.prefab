@@ -2318,7 +2318,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1047
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2358,7 +2358,7 @@ MonoBehaviour:
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
-    m_Time: 2
+    m_Time: 0.2
     m_CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -2386,9 +2386,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManagement: {fileID: 0}
   orientation: {fileID: 0}
-  player: {fileID: 0}
-  playerObj: {fileID: 0}
-  rb: {fileID: 0}
   focusLookAt: {fileID: 0}
   freeCam: {fileID: 205184547981767120}
   focusCam: {fileID: 579772404847073942}

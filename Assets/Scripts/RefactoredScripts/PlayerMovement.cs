@@ -111,6 +111,16 @@ public class PlayerMovement : MonoBehaviour
     private AnimalType _animalType = AnimalType.SNAKE;
     private MovementStat _moveState;
 
+    [Header("Paricle Systems")]
+    [SerializeField]
+    private ParticleSystem switchParticles;
+    [SerializeField]
+    private ParticleSystem moveParticles;
+    [SerializeField]
+    private ParticleSystem jumpParticles;
+    [SerializeField]
+    private ParticleSystem dashParticles;
+
     public enum MovementStat
     {
         walking,
@@ -230,8 +240,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void StateHandler()
     {
+        moveParticles.enableEmission = false;
         if (_isDashing)
         {
+            dashParticles.Play();
             _moveState = MovementStat.dashing;
             _desiredMoveSpeed = dashSpeed;
             _speedChangeFactor = dashSpeedChangeFactor;
@@ -256,11 +268,17 @@ public class PlayerMovement : MonoBehaviour
         else if (_isClimbing)
         {
             _moveState = MovementStat.climbing;
+            if (getVelocity() > 0.5) {
+                moveParticles.enableEmission = true;
+            }
             _desiredMoveSpeed = climbingSpeed;
         } 
         else if (_isGrounded)
         {
             _moveState = MovementStat.walking;
+            if (getVelocity() > 0.5) {
+                moveParticles.enableEmission = true;
+            }
             _desiredMoveSpeed = walkSpeed;
             _speedChangeFactor = walkSpeedChangeFactor;
         } 
@@ -289,11 +307,13 @@ public class PlayerMovement : MonoBehaviour
             _animalType = (AnimalType) (((int) _animalType + 3) % 4);
             _lastSwitch = -1;
             ToggleAniamMoves();
+            switchParticles.Play();
         } else if(_switchRightInput && _lastSwitch != 1)
         {
             _animalType = (AnimalType)(((int)_animalType + 1) % 4);
             _lastSwitch = 1;
             ToggleAniamMoves();
+            switchParticles.Play();
         }
         if(!_switchLeftInput && !_switchRightInput)
         {
@@ -384,6 +404,7 @@ public class PlayerMovement : MonoBehaviour
             _readyToJump = false;
 
             Jump();
+            jumpParticles.Play();
 
             Invoke(nameof(ResetJump), jumpCooldown);
         }
