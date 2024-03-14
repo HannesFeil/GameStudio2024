@@ -1129,7 +1129,7 @@ MonoBehaviour:
   - 0.25
   - 0.5
   - 1
-  interpellationSpeed: 2
+  interpellationSpeed: 3
   interpellationSwitchSpeed: 5
 --- !u!1 &2030901291459198205
 GameObject:

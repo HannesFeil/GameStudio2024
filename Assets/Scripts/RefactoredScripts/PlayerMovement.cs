@@ -150,6 +150,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _rb.freezeRotation = true;
+        _desiredMoveSpeed = walkSpeed;
         _stamina = new float[4];
         for (int i = 0; i < _stamina.Length; i++)
         {
