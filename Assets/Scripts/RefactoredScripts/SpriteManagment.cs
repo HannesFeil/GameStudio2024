@@ -86,7 +86,6 @@ public class SpriteManagment : MonoBehaviour
         switch (movementStat)
         {
             case PlayerMovement.MovementStat.air: 
-                animator.Play("Eyes_Shrink");
                 if (gameManagement.PlayerMovement.isJumping()) {
                     animator.Play("Jump");
                     if (!_cancelJumping) {
@@ -98,12 +97,15 @@ public class SpriteManagment : MonoBehaviour
                 }
                 break;
             case PlayerMovement.MovementStat.climbing: 
-                animator.Play("Walk");
+                if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) {
+                    animator.Play("Walk");
+                } else {
+                    animator.Play("Idle_A");
+                }
                 break;
             case PlayerMovement.MovementStat.dashing: 
                 //Wenn die Maus ihren Dash macht, macht sie Liegestütze und klatscht
                 animator.Play("Bounce");
-                animator.Play("Eyes_Blink");
                 break;
             case PlayerMovement.MovementStat.gliding: 
                 //Wenn der Vogel von etwas herunter gleitet, fliegt er
@@ -119,8 +121,11 @@ public class SpriteManagment : MonoBehaviour
                 break;
             case PlayerMovement.MovementStat.walking:
                 //Wenn die Tiere laufen, dann laufen sie
-                animator.Play("Walk");
-                animator.Play("Eyes_Excited");
+                if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) {
+                    animator.Play("Walk");
+                } else {
+                    animator.Play("Idle_A");
+                }
                 break;
         }
         //animator.Play("Spin");
