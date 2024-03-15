@@ -398,6 +398,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5780061165081093996, guid: 6573d6321abce4adfa6a72947e841980,
+        type: 3}
+      propertyPath: gameManagement
+      value: 
+      objectReference: {fileID: 1944806450093370757}
     - target: {fileID: 6247998238528501771, guid: 6573d6321abce4adfa6a72947e841980,
         type: 3}
       propertyPath: gameManagement
@@ -664,12 +669,12 @@ PrefabInstance:
     - target: {fileID: 2538573836618304501, guid: bc067224fecdf44ee88a8d6e97a1769c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000014940621
+      value: 0.000000014940621
       objectReference: {fileID: 0}
     - target: {fileID: 2538573836618304501, guid: bc067224fecdf44ee88a8d6e97a1769c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000008534484
+      value: 0.000000008534484
       objectReference: {fileID: 0}
     - target: {fileID: 2911191676994215754, guid: bc067224fecdf44ee88a8d6e97a1769c,
         type: 3}

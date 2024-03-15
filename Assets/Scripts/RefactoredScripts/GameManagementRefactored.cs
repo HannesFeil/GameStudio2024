@@ -23,6 +23,7 @@ public class GameManagementRefactored : MonoBehaviour
     public SpriteManagment SpriteManagment => spriteManagment;
     
     public float GameTime => _time;
+    public bool InGame => _inGame;
     
     
     private void Start()
