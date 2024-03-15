@@ -28,6 +28,7 @@ public class GameManagementRefactored : MonoBehaviour
     private void Start()
     {
         _time = 0;
+        playerMovement.PlayRestartClip();
     }
 
     private void Update()
@@ -45,6 +46,7 @@ public class GameManagementRefactored : MonoBehaviour
         {
             PlayerPrefs.SetFloat(currentSceneName,Mathf.Round(_time * 100) / 100);
         }
+        playerMovement.PlayWinClip();
         _inGame = false;
         overlay.DisplayWinnigBanner();
     }

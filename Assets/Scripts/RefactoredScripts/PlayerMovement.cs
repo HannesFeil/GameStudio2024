@@ -132,6 +132,10 @@ public class PlayerMovement : MonoBehaviour
     private AudioClip swingClip;
     [SerializeField]
     private AudioClip grappleClip;
+    [SerializeField]
+    private AudioClip winClip;
+    [SerializeField]
+    private AudioClip restartClip;
 
     public enum MovementStat
     {
@@ -613,5 +617,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void PlayDashClip() {
         audioSource.PlayOneShot(dashClip);
+    }
+
+    public void PlayWinClip() {
+        audioSource.PlayOneShot(winClip);
+    }
+
+    public void PlayRestartClip() {
+        audioSource.PlayOneShot(restartClip);
     }
 }
