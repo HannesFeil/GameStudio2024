@@ -121,6 +121,18 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private ParticleSystem dashParticles;
 
+    [Header("Sounds")]
+    [SerializeField]
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip jumpClip;
+    [SerializeField]
+    private AudioClip dashClip;
+    [SerializeField]
+    private AudioClip swingClip;
+    [SerializeField]
+    private AudioClip grappleClip;
+
     public enum MovementStat
     {
         walking,
@@ -406,6 +418,7 @@ public class PlayerMovement : MonoBehaviour
 
             Jump();
             jumpParticles.Play();
+            audioSource.PlayOneShot(jumpClip);
 
             Invoke(nameof(ResetJump), jumpCooldown);
         }
@@ -588,5 +601,17 @@ public class PlayerMovement : MonoBehaviour
     public AnimalType GetAnimalTyp()
     {
         return _animalType;
+    }
+
+    public void PlayGrappleClip() {
+        audioSource.PlayOneShot(grappleClip);
+    }
+
+    public void PlaySwingClip() {
+        audioSource.PlayOneShot(swingClip);
+    }
+
+    public void PlayDashClip() {
+        audioSource.PlayOneShot(dashClip);
     }
 }
