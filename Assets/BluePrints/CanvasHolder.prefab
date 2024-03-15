@@ -491,6 +491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 5750675372084991146}
+  gameManagement: {fileID: 0}
   pause: 27
   restart: 114
 --- !u!1 &6721734872169141247
@@ -854,17 +855,17 @@ PrefabInstance:
     - target: {fileID: 3978829880387422360, guid: 55de2daa180674e1c802253fa53abe16,
         type: 3}
       propertyPath: medalionTimes.Array.data[0]
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3978829880387422360, guid: 55de2daa180674e1c802253fa53abe16,
         type: 3}
       propertyPath: medalionTimes.Array.data[1]
-      value: 8
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3978829880387422360, guid: 55de2daa180674e1c802253fa53abe16,
         type: 3}
       propertyPath: medalionTimes.Array.data[2]
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6131573742615837941, guid: 55de2daa180674e1c802253fa53abe16,
         type: 3}

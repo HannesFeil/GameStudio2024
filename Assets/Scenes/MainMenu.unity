@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028328, g: 0.22571328, b: 0.3069218, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -630,9 +630,9 @@ MonoBehaviour:
   - {fileID: 1064972776}
   - {fileID: 1866104410}
   timeRequirerment:
-  - 0
-  - 0
-  - 0
+  - 20
+  - 15
+  - 10
   worldName: World02
   bestTime: {fileID: 1076045843}
 --- !u!1 &179801293
@@ -2669,9 +2669,9 @@ MonoBehaviour:
   - {fileID: 1784473416}
   - {fileID: 212411102}
   timeRequirerment:
-  - 0
-  - 0
-  - 0
+  - 20
+  - 15
+  - 10
   worldName: World08
   bestTime: {fileID: 679413818}
 --- !u!1 &785349216
@@ -3238,9 +3238,9 @@ MonoBehaviour:
   - {fileID: 656569753}
   - {fileID: 1839407688}
   timeRequirerment:
-  - 0
-  - 0
-  - 0
+  - 20
+  - 15
+  - 10
   worldName: World03
   bestTime: {fileID: 427370387}
 --- !u!1 &902797005
@@ -4398,9 +4398,9 @@ MonoBehaviour:
   - {fileID: 785349216}
   - {fileID: 1511399198}
   timeRequirerment:
-  - 0
-  - 0
-  - 0
+  - 20
+  - 15
+  - 10
   worldName: World07
   bestTime: {fileID: 986294907}
 --- !u!1 &1139188649
@@ -5248,9 +5248,9 @@ MonoBehaviour:
   - {fileID: 543232299}
   - {fileID: 558391300}
   timeRequirerment:
-  - 0
-  - 0
-  - 0
+  - 20
+  - 15
+  - 10
   worldName: World05
   bestTime: {fileID: 1048191865}
 --- !u!1 &1487340979
@@ -5406,9 +5406,9 @@ MonoBehaviour:
   - {fileID: 259131690}
   - {fileID: 917249892}
   timeRequirerment:
-  - 0
-  - 0
-  - 0
+  - 20
+  - 15
+  - 10
   worldName: World06
   bestTime: {fileID: 234524450}
 --- !u!1 &1500994333
@@ -5564,9 +5564,9 @@ MonoBehaviour:
   - {fileID: 179801293}
   - {fileID: 55325309}
   timeRequirerment:
-  - 0
-  - 0
-  - 0
+  - 20
+  - 15
+  - 10
   worldName: World09
   bestTime: {fileID: 843067000}
 --- !u!1 &1511399198
@@ -5910,9 +5910,9 @@ MonoBehaviour:
   - {fileID: 1717051939}
   - {fileID: 373498717}
   timeRequirerment:
-  - 0
-  - 0
-  - 0
+  - 20
+  - 15
+  - 10
   worldName: World04
   bestTime: {fileID: 1846854218}
 --- !u!1 &1701296330
@@ -6181,9 +6181,9 @@ MonoBehaviour:
   - {fileID: 1139188649}
   - {fileID: 1097098403}
   timeRequirerment:
+  - 20
+  - 15
   - 10
-  - 8
-  - 6
   worldName: World01
   bestTime: {fileID: 791530235}
 --- !u!1 &1716484810
