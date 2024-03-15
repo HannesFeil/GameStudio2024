@@ -52,9 +52,6 @@ public class Overlaytwo : MonoBehaviour
     {
         winningBanner.SetActive(false);
         _lastAnimal = (AnimalType) (((int) gameManagement.PlayerMovement.GetAnimalTyp() + 1) % 4);
-        print(staminaColor[0]);
-        print(staminaColor[1]);
-        print(staminaColor[2]);
         AnimalsDisplay();
         
     }

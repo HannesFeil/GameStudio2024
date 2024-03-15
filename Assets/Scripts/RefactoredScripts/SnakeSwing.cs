@@ -162,6 +162,7 @@ public class SnakeSwing : MonoBehaviour
         if(_pm.IsSwinging()) return;
         if (_pm.IsGrappling()) return;
         if (_predictionHit.point == Vector3.zero) return;
+        _pm.PlaySwingClip();
 
         _pm.SetStamina((int) aniaml, _pm.GetStamina((int) aniaml) - staminaDrain);
 
@@ -213,6 +214,7 @@ public class SnakeSwing : MonoBehaviour
         _pm.SetGrappling(true);
         StopSwing();
         Invoke(nameof(ExecuteGrapple), 0.1f);
+        _pm.PlayGrappleClip();
     }
 
     private void ExecuteGrapple()

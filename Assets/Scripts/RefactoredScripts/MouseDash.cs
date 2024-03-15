@@ -93,6 +93,7 @@ public class MouseDash : MonoBehaviour
     {
         if (_dashCdTimer > 0f) return;
         else _dashCdTimer = dashCd;
+        _pm.PlayDashClip();
 
         _pm.SetDashing(true);
         _pm.SetStamina((int)aniaml, _pm.GetStamina((int) aniaml) - staminaDrain);

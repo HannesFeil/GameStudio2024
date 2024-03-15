@@ -9,6 +9,8 @@ public class MenuManagment : MonoBehaviour
     [Header("Reverences")]
     [SerializeField] 
     private Canvas menu;
+
+    [SerializeField] private GameManagementRefactored gameManagement;
     
     
     
@@ -32,7 +34,11 @@ public class MenuManagment : MonoBehaviour
     {
         if (Input.GetKeyDown(pause))
         {
-            if (_paused)
+            if (!gameManagement.InGame)
+            {
+                ToMainMenue();
+            }
+            else if (_paused)
             {
                 Resume();
             }
