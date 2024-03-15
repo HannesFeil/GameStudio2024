@@ -136,6 +136,8 @@ public class PlayerMovement : MonoBehaviour
     private AudioClip winClip;
     [SerializeField]
     private AudioClip restartClip;
+    [SerializeField]
+    private AudioClip clickClip;
 
     public enum MovementStat
     {
@@ -625,5 +627,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void PlayRestartClip() {
         audioSource.PlayOneShot(restartClip);
+    }
+
+    public void PlayClickClip() {
+        audioSource.PlayOneShot(clickClip);
     }
 }
